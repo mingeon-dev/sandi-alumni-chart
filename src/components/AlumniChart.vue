@@ -57,22 +57,22 @@ const createData = (data, key) => {
 
 <template>
   <div class="container">
-    <v-card class="card" title="학사 전공" min-width="400" elevation="16">
+    <v-card class="card" title="학사 전공" elevation="16">
       <PieChart :data="majorData"></PieChart>
     </v-card>
-    <v-card class="card" title="석사 대학원" min-width="400" elevation="16">
+    <v-card class="card" title="석사 대학원" elevation="16">
       <PieChart :data="masterData"></PieChart>
     </v-card>
-    <v-card class="card" title="박사 대학원" min-width="400" elevation="16">
+    <v-card class="card" title="박사 대학원" elevation="16">
       <PieChart :data="phDData"></PieChart>
     </v-card>
-    <v-card class="card" title="현직장 현황" min-width="400" elevation="16">
+    <v-card class="card" title="현직장 현황" elevation="16">
       <HorizontalBarChart :data="companyNameData"></HorizontalBarChart>
     </v-card>
-    <v-card class="card" title="현직 업무 직군" min-width="400" elevation="16">
+    <v-card class="card" title="현직 업무 직군" elevation="16">
       <HorizontalBarChart :data="companyTaskGroupData"></HorizontalBarChart>
     </v-card>
-    <v-card class="card" title="참여 학번" min-width="400" elevation="16">
+    <v-card class="card" title="참여 학번" elevation="16">
       <HorizontalBarChart :data="yearOfAdmissionData"></HorizontalBarChart>
     </v-card>
   </div>
@@ -89,5 +89,12 @@ const createData = (data, key) => {
 
 .card {
   margin-top: 2rem;
+  width: 400px;
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 350px;
+  }
 }
 </style>
