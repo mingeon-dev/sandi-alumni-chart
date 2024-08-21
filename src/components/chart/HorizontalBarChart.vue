@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import { Chart } from 'chart.js/auto'
+import { isMobile } from '@/util/MediaQuery'
 
 const props = defineProps({
   data: Object
@@ -56,7 +57,7 @@ const createChart = () => {
           }
         }
       },
-      aspectRatio: 1
+      aspectRatio: isMobile ? 0.5 : 0.9
     }
   })
 }

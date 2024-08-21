@@ -82,19 +82,20 @@ const createData = (data, key) => {
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: space-around;
-  margin-bottom: 2rem;
 }
 
 .card {
-  margin-top: 2rem;
   width: 400px;
+  height: 496px;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
 }
 
 @media only screen and (max-width: 600px) {
   .card {
     width: 350px;
+    height: auto;
+    margin: 0 auto 2rem;
   }
 }
 </style>
