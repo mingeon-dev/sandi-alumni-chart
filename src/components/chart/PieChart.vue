@@ -2,8 +2,12 @@
 import { computed, onMounted, ref } from 'vue'
 import { Chart } from 'chart.js/auto'
 import PieLabelsLine from '@/util/PieLabelsLine'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const props = defineProps({
+  field: String,
   data: Object
 })
 
@@ -26,6 +30,17 @@ const createChart = () => {
     options: {
       layout: {
         padding: 100
+      },
+      onHover: (event, elements) => {
+        event.native.target.style.cursor = elements.length === 1 ? 'pointer' : 'default'
+      },
+      onClick: (event, elements, chart) => {
+        if (elements[0]) {
+          router.push({
+            path: '/list',
+            query: { [props.field]: chart.data.labels[elements[0].index] }
+          })
+        }
       },
       plugins: {
         legend: {

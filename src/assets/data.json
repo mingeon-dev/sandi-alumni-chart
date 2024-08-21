@@ -638,5 +638,323 @@
       "electronicEngineering2": "전자기학1, 회로이론, 전자회로1, 기초회로실험",
       "electronicEngineering3": "전자기학2, 회로이론2, 전자회로2, 전자회로실험"
     }
+  },
+  {
+    "id": "20240815165607",
+    "yearOfAdmission": "2010",
+    "major": "전자.전파공학",
+    "company": {
+      "name": "한국전력공사",
+      "team": "배전설계부",
+      "task": "신도시, 택지 등 배전건설사업 설계",
+      "taskGroup": "일반 사무직"
+    },
+    "electronicEngineering1": "물리학및실험1, 물리학및실험2",
+    "electronicEngineering2": "전자기학1, 회로이론",
+    "electronicEngineering3": "전자기학2"
+  },
+  {
+    "id": "20240815170432",
+    "yearOfAdmission": "2011",
+    "major": "전자공학",
+    "master": {
+      "university": "고려대학교",
+      "major": "전자공학",
+      "professor": "박종선",
+      "concentration": "인공지능, 뉴로모픽 반도체 설계"
+    },
+    "phD": {
+      "university": "고려대학교",
+      "major": "전자공학",
+      "professor": "박종선",
+      "concentration": "인공지능, 뉴로모픽 반도체 설계"
+    },
+    "company": {
+      "name": "한국전자기술연구원(KETI)",
+      "team": "soc플랫폼연구센터",
+      "task": "인공지능 뉴로포믹 반도체 설계",
+      "taskGroup": "디지털 회로설계, 반도체 회로설계, 반도체 소프트웨어(펌웨어,미들웨어,솔루션), 임베디드 펌웨어, 머신러닝"
+    },
+    "electronicEngineering1": "선형대수, 객체지향프로그래밍및실습, 웹/파이선프로그래밍",
+    "computerEngineering1": "선형대수, 웹/파이선프로그래밍",
+    "electronicEngineering2": "회로이론, 물리전자, 전자회로1, 기초회로실험, 논리회로, 신호와시스템",
+    "computerEngineering2": "객체지향프로그래밍, 컴퓨터구조, 운영체제, 알고리즘, 소프트웨어공학, 논리회로, 웹/파이선프로그래밍, 오픈소스SW개발방법및도구",
+    "electronicEngineering3": "컴퓨터구조, 자료구조및알고리즘, 회로이론2, 디지털통신, 디지털신호처리, DSP실험, 디지털회로설계및언어, 디지털집적회로모델링실험, 마이크로프로세서, 전자회로2, 전자회로실험, 임베디드시스템설계, 소프트웨어랩, 정보및부호이론, 이동통신, 영상신호처리, VLSI설계, SoC설계, 반도체집적회로",
+    "computerEngineering3": "인공지능프로그래밍, 컴파일러, 딥러닝, 영상처리, 컴퓨터비전, 신호와시스템, 회로와신호, 자연어처리, 강화학습"
+  },
+  {
+    "id": "20240815204220",
+    "yearOfAdmission": "2005",
+    "major": "전자.전파공학",
+    "master": {
+      "university": "경희대학교",
+      "major": "전자공학",
+      "professor": "김동한",
+      "concentration": "로봇제어. 휴머노이드 로봇 제어 기술 관련 연구 "
+    },
+    "phD": {
+      "university": "카이스트",
+      "major": "건설및환경공학",
+      "professor": "명현",
+      "concentration": "딥러닝 기반의 객체 인식 및 로봇 제어 연구"
+    },
+    "company": {
+      "name": "씨드로닉스",
+      "team": "R&D",
+      "task": "CTO",
+      "taskGroup": "로보틱스 소프트웨어, 머신러닝, 스타트업 설립자",
+      "previous": "삼성S1 연구소 영상인식그룹"
+    },
+    "electronicEngineering1": "고급미분적분학, 선형대수, 미분적분학, 확률및랜덤변수, 객체지향프로그래밍및실습, 웹/파이선프로그래밍",
+    "computerEngineering1": "선형대수, 미분적분학, 이산구조, 웹/파이선프로그래밍",
+    "electronicEngineering2": "논리회로, 신호와시스템",
+    "computerEngineering2": "객체지향프로그래밍, 컴퓨터구조, 자료구조, 운영체제, 컴퓨터네트워크, 알고리즘, 데이터베이스, 소프트웨어공학, 논리회로, 디자인적사고, 웹/파이선프로그래밍, 오픈소스SW개발방법및도구, 기계학습",
+    "electronicEngineering3": "컴퓨터구조, 컴퓨터네트워크, 자료구조및알고리즘, 디지털신호처리, 디지털회로설계및언어, 자동제어, 마이크로프로세서, 임베디드시스템설계, 소프트웨어랩, 머신러닝개론, 정보및부호이론, 영상신호처리, 로봇제어공학",
+    "computerEngineering3": "인공지능프로그래밍, 고급딥러닝, 프로그래밍언어론, SW스타트업비즈니스, 딥러닝, 리눅스시스템프로그래밍, SW스타트업프로젝트, 영상처리, 컴퓨터비전, 신호와시스템, 로봇프로그래밍, 인공지능과게임프로그래밍, 자연어처리, 강화학습"
+  },
+  {
+    "id": "20240816093232",
+    "yearOfAdmission": "2002",
+    "major": "전자.전파공학",
+    "master": {
+      "university": "성균관대학교",
+      "major": "반도체공학",
+      "professor": "이강윤 교수님",
+      "concentration": "PMIC"
+    },
+    "company": {
+      "name": "삼성전자DS부문",
+      "team": "S.LSI사업부",
+      "task": "PMIC 회로설계",
+      "taskGroup": "아날로그 회로설계"
+    },
+    "electronicEngineering2": "전자기학1, 회로이론, 물리전자, 전자회로1, 기초회로실험, 논리회로, 신호와시스템",
+    "electronicEngineering3": "반도체공정"
+  },
+  {
+    "id": "20240816104713",
+    "yearOfAdmission": "2001",
+    "major": "전자공학",
+    "company": {
+      "name": "삼성전자DS부문",
+      "team": "메모리사업부",
+      "task": "PMIC 설계",
+      "taskGroup": "아날로그 회로설계, 반도체 분석.검증.품질"
+    },
+    "electronicEngineering2": "회로이론, 물리전자, 전자회로1, 기초회로실험, 논리회로, 신호와시스템",
+    "electronicEngineering3": "회로이론2, 반도체공학, 반도체공정, 전자회로실험, VLSI설계, 반도체집적회로"
+  },
+  {
+    "id": "20240816110730",
+    "yearOfAdmission": "2016",
+    "major": "전자공학",
+    "company": {
+      "name": "현대모비스",
+      "team": "전장BU",
+      "task": "차량용 디스플레이 선행개발",
+      "taskGroup": "디지털 회로설계, 제품.개발 매니징, 개발기획, 일반 사무직"
+    },
+    "electronicEngineering1": "선형대수, 미분적분학, 물리학및실험1",
+    "electronicEngineering2": "전자기학1, 회로이론, 물리전자, 전자회로1, 기초회로실험, 논리회로",
+    "electronicEngineering3": "컴퓨터구조, 회로이론2, 반도체공학, 반도체공정, 디지털신호처리, 디지털회로설계및언어, 머신러닝개론, 광전자공학, 디스플레이공학, 무선데이타통신"
+  },
+  {
+    "id": "20240817110556",
+    "yearOfAdmission": "2018",
+    "major": "전자공학",
+    "company": {
+      "name": "현대자동차",
+      "team": "AVP본부",
+      "task": "차량SW개발",
+      "taskGroup": "임베디드 소프트웨어 개발 (기타)"
+    },
+    "electronicEngineering1": "미분방정식, 선형대수, 물리학및실험1, 물리학및실험2, 확률및랜덤변수, 객체지향프로그래밍및실습, 웹/파이선프로그래밍",
+    "electronicEngineering2": "논리회로",
+    "electronicEngineering3": "컴퓨터구조, 컴퓨터네트워크, 자료구조및알고리즘, 자동제어, 마이크로프로세서, 임베디드시스템설계, 소프트웨어랩"
+  },
+  {
+    "id": "20240818103140",
+    "yearOfAdmission": "2013",
+    "major": "전자공학",
+    "company": {
+      "name": "현대자동차",
+      "team": "자율주행사업부",
+      "task": "SW개발",
+      "taskGroup": "자율주행 기능 SW"
+    },
+    "electronicEngineering1": "객체지향프로그래밍및실습, 웹/파이선프로그래밍",
+    "electronicEngineering3": "디지털신호처리, 자동제어"
+  },
+  {
+    "id": "20240818105025",
+    "yearOfAdmission": "2007",
+    "major": "전자공학",
+    "company": {
+      "name": "삼성전자DS부문",
+      "team": "메모리사업부",
+      "task": "시스템 개발",
+      "taskGroup": "반도체 소프트웨어(펌웨어,미들웨어,솔루션), 임베디드 펌웨어, 일반 사무직",
+      "previous": "삼성전자<VD사업부:14-18>, 삼성전자<메모리사업부:18-24>"
+    },
+    "electronicEngineering1": "객체지향프로그래밍및실습, 웹/파이선프로그래밍",
+    "electronicEngineering3": "컴퓨터네트워크"
+  },
+  {
+    "id": "20240818111611",
+    "yearOfAdmission": "2014",
+    "major": "전자공학",
+    "company": {
+      "name": "삼성전자DS부문",
+      "team": "메모리사업부",
+      "task": "Flash메모리설계",
+      "taskGroup": "아날로그 회로설계, 디지털 회로설계"
+    },
+    "electronicEngineering2": "회로이론, 전자회로1, 논리회로",
+    "electronicEngineering3": "디지털회로설계및언어, 전자회로2, VLSI설계"
+  },
+  {
+    "id": "20240818121522",
+    "yearOfAdmission": "2017",
+    "major": "전자공학",
+    "company": {
+      "name": "현대케피코",
+      "team": "R&D",
+      "task": "제어기 ASW 개발",
+      "taskGroup": "임베디드 펌웨어, 프론트엔드, 백엔드"
+    },
+    "electronicEngineering1": "객체지향프로그래밍및실습",
+    "electronicEngineering2": "신호와시스템",
+    "computerEngineering2": "객체지향프로그래밍, 컴퓨터구조, 자료구조, 운영체제, 컴퓨터네트워크, 소프트웨어공학, 오픈소스SW개발방법및도구",
+    "electronicEngineering3": "컴퓨터구조, 컴퓨터네트워크, 자료구조및알고리즘, 디지털통신, 디지털신호처리, 마이크로프로세서, 임베디드시스템설계, 소프트웨어랩",
+    "computerEngineering3": "신호와시스템"
+  },
+  {
+    "id": "20240818131030",
+    "yearOfAdmission": "2016",
+    "major": "전자공학",
+    "company": {
+      "name": "삼성전자DS부문",
+      "team": "S.LSI사업부",
+      "task": "SW개발팀- GPU 커널 드라이버 개발",
+      "taskGroup": "디지털 회로설계, 임베디드 리눅스 BSP, 임베디드 리눅스 소프트웨어, 임베디드 리눅스 어플리케이션, 안드로이드 BSP, 안드로이드 소프트웨어, 안드로이드 어플리케이션",
+      "previous": "현대모비스<SOC사업부:22-23>"
+    },
+    "electronicEngineering1": "객체지향프로그래밍및실습, 웹/파이선프로그래밍",
+    "computerEngineering1": "웹/파이선프로그래밍",
+    "electronicEngineering2": "논리회로",
+    "computerEngineering2": "객체지향프로그래밍, 컴퓨터구조, 자료구조, 운영체제, 알고리즘, 소프트웨어공학, 웹/파이선프로그래밍",
+    "electronicEngineering3": "컴퓨터구조, 자료구조및알고리즘, 자동제어, 마이크로프로세서, 임베디드시스템설계, 소프트웨어랩, VLSI설계, SoC설계",
+    "computerEngineering3": "컴파일러, 프로그래밍언어론, 리눅스시스템프로그래밍, 영상처리, 컴퓨터그래픽스, 모바일/웹서비스프로그래밍, 게임그래픽프로그래밍, 게임인터렉티프테크놀로지"
+  },
+  {
+    "id": "20240819221921",
+    "yearOfAdmission": "2014",
+    "major": "전자공학",
+    "company": {
+      "name": "삼성전자DS부문",
+      "team": "메모리사업부",
+      "task": "회로설계(Flash설계팀 - Physical Verification & Automation)",
+      "taskGroup": "반도체 회로설계, 반도체 분석.검증.품질, 반도체 소프트웨어(펌웨어,미들웨어,솔루션)",
+      "previous": "코가로보틱스(기업부설연구소,:20-20)"
+    },
+    "electronicEngineering1": "웹/파이선프로그래밍",
+    "electronicEngineering2": "회로이론, 물리전자, 전자회로1, 기초회로실험",
+    "electronicEngineering3": "반도체공학, 반도체공정, 디지털회로설계및언어, 전자회로2, 전자회로실험, VLSI설계"
+  },
+  {
+    "id": "20240820035424",
+    "yearOfAdmission": "2001",
+    "major": "전자공학",
+    "master": {
+      "university": "International Technological University",
+      "major": "전자공학"
+    },
+    "company": {
+      "name": "Tesla (미국)",
+      "team": "Electronic Devices",
+      "task": "디스플레이 시스템 설계",
+      "taskGroup": "디지털 회로설계, 제품.개발 매니징",
+      "previous": "삼성전자<영상디스플레이사업부:06-15>"
+    },
+    "electronicEngineering1": "웹/파이선프로그래밍",
+    "electronicEngineering2": "전자기학1, 회로이론, 물리전자, 전자회로1, 기초회로실험, 논리회로, 신호와시스템",
+    "computerEngineering2": "논리회로, 웹/파이선프로그래밍",
+    "electronicEngineering3": "회로이론2, 디지털회로설계및언어, 마이크로프로세서, 전자회로2, 디스플레이공학, 영상신호처리"
+  },
+  {
+    "id": "20240820113146",
+    "yearOfAdmission": "2001",
+    "major": "전자공학",
+    "company": {
+      "name": "삼성전자DS부문",
+      "team": "S.LSI사업부",
+      "task": "반도체 설계 ",
+      "taskGroup": "디지털 회로설계"
+    },
+    "electronicEngineering1": "확률및랜덤변수, 웹/파이선프로그래밍",
+    "computerEngineering1": "웹/파이선프로그래밍",
+    "electronicEngineering2": "회로이론, 전자회로1, 논리회로, 신호와시스템",
+    "computerEngineering2": "컴퓨터구조, 논리회로, 웹/파이선프로그래밍",
+    "electronicEngineering3": "컴퓨터구조, 반도체공학, 디지털회로설계및언어, VLSI설계, SoC설계, 반도체집적회로"
+  },
+  {
+    "id": "20240820114341",
+    "yearOfAdmission": "2003",
+    "major": "전자공학",
+    "master": {
+      "university": "한양대학교",
+      "major": "무선통신",
+      "professor": "이상선 교수님",
+      "concentration": "차랑간 무선통신 네트워크"
+    },
+    "company": {
+      "name": "현대모비스",
+      "team": "전자제어개발",
+      "task": "디지털키, 바디도메인통합제어기",
+      "taskGroup": "임베디드 펌웨어, 제품.개발 매니징"
+    },
+    "electronicEngineering1": "객체지향프로그래밍및실습",
+    "electronicEngineering2": "회로이론, 전자회로1, 논리회로",
+    "computerEngineering2": "객체지향프로그래밍, 컴퓨터구조, 자료구조, 운영체제, 컴퓨터네트워크, 논리회로",
+    "electronicEngineering3": "컴퓨터구조, 컴퓨터네트워크, 자료구조및알고리즘, 회로이론2, 마이크로프로세서, 전자회로2, 임베디드시스템설계",
+    "computerEngineering3": "프로그래밍언어론, 소프트웨어보안"
+  },
+  {
+    "id": "20240820133448",
+    "yearOfAdmission": "2009",
+    "major": "전자.전파공학",
+    "company": {
+      "name": "삼성전자DS부문",
+      "team": "메모리사업부",
+      "task": "DRAM 시스템 평가 및 불량분석",
+      "taskGroup": "아날로그 회로설계, 반도체 분석.검증.품질, 반도체 소프트웨어(펌웨어,미들웨어,솔루션), 검증.품질.EQ.테스트",
+      "previous": "SK하이닉스<DRAM개발실 DRAM AE팀:15-21>"
+    },
+    "electronicEngineering1": "물리학및실험1, 물리학및실험2",
+    "computerEngineering1": "웹/파이선프로그래밍",
+    "electronicEngineering2": "전자기학1, 회로이론, 물리전자, 전자회로1, 기초회로실험, 논리회로, 신호와시스템",
+    "computerEngineering2": "컴퓨터구조, 운영체제, 알고리즘, 웹/파이선프로그래밍",
+    "electronicEngineering3": "컴퓨터구조, 전자기학2, 회로이론2, 반도체공학, 디지털신호처리, 마이크로프로세서, 전자회로2, 전자회로실험, 임베디드시스템설계, 무선데이타통신",
+    "computerEngineering3": "리눅스시스템프로그래밍"
+  },
+  {
+    "id": "20240821105118",
+    "yearOfAdmission": "2009",
+    "major": "전자.전파공학",
+    "master": {
+      "university": "경희대학교",
+      "major": "아날로그 디지털 회로설계",
+      "professor": "이종욱 교수님"
+    },
+    "company": {
+      "name": "SK하이닉스",
+      "team": "DRAM 설계",
+      "task": "Dram 회로 설계",
+      "taskGroup": "아날로그 회로설계, 디지털 회로설계",
+      "previous": "LG디스플레이<PO회로설계:17-19>"
+    },
+    "electronicEngineering1": "선형대수, 확률및랜덤변수",
+    "electronicEngineering2": "회로이론, 물리전자, 전자회로1, 논리회로, 신호와시스템",
+    "electronicEngineering3": "회로이론2, 반도체공학, 디지털회로설계및언어, 디지털집적회로모델링실험, 전자회로2, 전자회로실험, VLSI설계, SoC설계, 반도체집적회로"
   }
 ]

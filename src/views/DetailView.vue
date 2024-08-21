@@ -1,5 +1,6 @@
+<script setup>
+//
+</script>
 <template>
-  <div class="about">
-    <h1>This is an detail page</h1>
-  </div>
+  <div>This is an detail page</div>
 </template>
