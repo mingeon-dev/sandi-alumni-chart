@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import { mdiMagnify } from '@mdi/js'
 import { useRoute } from 'vue-router'
 import { FIELD_NAME, NESTED_FIELD_NAME, getTitle, getDataByFilter } from '@/util/DataHelper'
 
@@ -44,7 +45,7 @@ const initDataByQuery = () => {
       class="text-field"
       v-model="search"
       label="키워드로 검색해보세요."
-      prepend-inner-icon="mdi-magnify"
+      :prepend-inner-icon="mdiMagnify"
       variant="outlined"
       hide-details
       single-line
