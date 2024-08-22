@@ -23,16 +23,21 @@ import { FIELD_NAME, NESTED_FIELD_NAME, getTitle, calcStatistics } from '@/util/
     </v-card>
     <v-card class="card" :title="getTitle(NESTED_FIELD_NAME.COMPANY_NAME)" elevation="16">
       <HorizontalBarChart
+        :field="NESTED_FIELD_NAME.COMPANY_NAME"
         :data="calcStatistics(NESTED_FIELD_NAME.COMPANY_NAME)"
       ></HorizontalBarChart>
     </v-card>
     <v-card class="card" :title="getTitle(NESTED_FIELD_NAME.COMPANY_TASK_GROUP)" elevation="16">
       <HorizontalBarChart
+        :field="NESTED_FIELD_NAME.COMPANY_TASK_GROUP"
         :data="calcStatistics(NESTED_FIELD_NAME.COMPANY_TASK_GROUP)"
       ></HorizontalBarChart>
     </v-card>
     <v-card class="card" :title="getTitle(FIELD_NAME.YEAR_OF_ADMISSION)" elevation="16">
-      <HorizontalBarChart :data="calcStatistics(FIELD_NAME.YEAR_OF_ADMISSION)"></HorizontalBarChart>
+      <HorizontalBarChart
+        :field="FIELD_NAME.YEAR_OF_ADMISSION"
+        :data="calcStatistics(FIELD_NAME.YEAR_OF_ADMISSION)"
+      ></HorizontalBarChart>
     </v-card>
   </div>
 </template>

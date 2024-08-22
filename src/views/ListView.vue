@@ -10,18 +10,22 @@ const route = useRoute()
 const search = ref()
 const filteredData = ref([])
 const headers = ref([
-  { title: getTitle(FIELD_NAME.MAJOR), key: FIELD_NAME.MAJOR },
+  { title: getTitle(FIELD_NAME.MAJOR), key: FIELD_NAME.MAJOR, nowrap: true },
   {
     title: getTitle(NESTED_FIELD_NAME.MASTER_UNIVERSITY),
     key: NESTED_FIELD_NAME.MASTER_UNIVERSITY,
-    minWidth: '120px'
+    nowrap: true
   },
   {
     title: getTitle(NESTED_FIELD_NAME.PH_D_UNIVERSITY),
     key: NESTED_FIELD_NAME.PH_D_UNIVERSITY,
-    minWidth: '120px'
+    nowrap: true
   },
-  { title: getTitle(NESTED_FIELD_NAME.COMPANY_NAME), key: NESTED_FIELD_NAME.COMPANY_NAME },
+  {
+    title: getTitle(NESTED_FIELD_NAME.COMPANY_NAME),
+    key: NESTED_FIELD_NAME.COMPANY_NAME,
+    nowrap: true
+  },
   {
     title: getTitle(NESTED_FIELD_NAME.COMPANY_TASK_GROUP),
     key: NESTED_FIELD_NAME.COMPANY_TASK_GROUP
@@ -29,7 +33,7 @@ const headers = ref([
   {
     title: getTitle(FIELD_NAME.YEAR_OF_ADMISSION),
     key: FIELD_NAME.YEAR_OF_ADMISSION,
-    minWidth: '80px'
+    nowrap: true
   }
 ])
 

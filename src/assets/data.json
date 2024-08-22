@@ -723,7 +723,7 @@
       "concentration": "PMIC"
     },
     "company": {
-      "name": "삼성전자DS부문",
+      "name": "삼성전자",
       "team": "S.LSI사업부",
       "task": "PMIC 회로설계",
       "taskGroup": "아날로그 회로설계"
@@ -736,7 +736,7 @@
     "yearOfAdmission": "2001",
     "major": "전자공학",
     "company": {
-      "name": "삼성전자DS부문",
+      "name": "삼성전자",
       "team": "메모리사업부",
       "task": "PMIC 설계",
       "taskGroup": "아날로그 회로설계, 반도체 분석.검증.품질"
@@ -790,7 +790,7 @@
     "yearOfAdmission": "2007",
     "major": "전자공학",
     "company": {
-      "name": "삼성전자DS부문",
+      "name": "삼성전자",
       "team": "메모리사업부",
       "task": "시스템 개발",
       "taskGroup": "반도체 소프트웨어(펌웨어,미들웨어,솔루션), 임베디드 펌웨어, 일반 사무직",
@@ -804,7 +804,7 @@
     "yearOfAdmission": "2014",
     "major": "전자공학",
     "company": {
-      "name": "삼성전자DS부문",
+      "name": "삼성전자",
       "team": "메모리사업부",
       "task": "Flash메모리설계",
       "taskGroup": "아날로그 회로설계, 디지털 회로설계"
@@ -833,7 +833,7 @@
     "yearOfAdmission": "2016",
     "major": "전자공학",
     "company": {
-      "name": "삼성전자DS부문",
+      "name": "삼성전자",
       "team": "S.LSI사업부",
       "task": "SW개발팀- GPU 커널 드라이버 개발",
       "taskGroup": "디지털 회로설계, 임베디드 리눅스 BSP, 임베디드 리눅스 소프트웨어, 임베디드 리눅스 어플리케이션, 안드로이드 BSP, 안드로이드 소프트웨어, 안드로이드 어플리케이션",
@@ -851,7 +851,7 @@
     "yearOfAdmission": "2014",
     "major": "전자공학",
     "company": {
-      "name": "삼성전자DS부문",
+      "name": "삼성전자",
       "team": "메모리사업부",
       "task": "회로설계(Flash설계팀 - Physical Verification & Automation)",
       "taskGroup": "반도체 회로설계, 반도체 분석.검증.품질, 반도체 소프트웨어(펌웨어,미들웨어,솔루션)",
@@ -886,7 +886,7 @@
     "yearOfAdmission": "2001",
     "major": "전자공학",
     "company": {
-      "name": "삼성전자DS부문",
+      "name": "삼성전자",
       "team": "S.LSI사업부",
       "task": "반도체 설계 ",
       "taskGroup": "디지털 회로설계"
@@ -924,7 +924,7 @@
     "yearOfAdmission": "2009",
     "major": "전자.전파공학",
     "company": {
-      "name": "삼성전자DS부문",
+      "name": "삼성전자",
       "team": "메모리사업부",
       "task": "DRAM 시스템 평가 및 불량분석",
       "taskGroup": "아날로그 회로설계, 반도체 분석.검증.품질, 반도체 소프트웨어(펌웨어,미들웨어,솔루션), 검증.품질.EQ.테스트",

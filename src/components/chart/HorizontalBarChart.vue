@@ -2,8 +2,12 @@
 import { computed, onMounted, ref } from 'vue'
 import { Chart } from 'chart.js/auto'
 import { isMobile } from '@/util/MediaQuery'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const props = defineProps({
+  field: String,
   data: Object
 })
 
@@ -31,6 +35,17 @@ const createChart = () => {
       indexAxis: 'y',
       layout: {
         padding: 20
+      },
+      onHover: (event, elements) => {
+        event.native.target.style.cursor = elements.length === 1 ? 'pointer' : 'default'
+      },
+      onClick: (event, elements, chart) => {
+        if (elements[0]) {
+          router.push({
+            path: '/list',
+            query: { [props.field]: chart.data.labels[elements[0].index] }
+          })
+        }
       },
       plugins: {
         legend: {
