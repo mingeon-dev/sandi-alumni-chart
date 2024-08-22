@@ -19,7 +19,7 @@ export const NESTED_FIELD_NAME = {
 }
 
 const TITLES = {
-  [FIELD_NAME.MAJOR]: '전공',
+  [FIELD_NAME.MAJOR]: '학사 전공',
   [NESTED_FIELD_NAME.MASTER_UNIVERSITY]: '석사 대학원',
   [NESTED_FIELD_NAME.PH_D_UNIVERSITY]: '박사 대학원',
   [NESTED_FIELD_NAME.COMPANY_NAME]: '회사명',
