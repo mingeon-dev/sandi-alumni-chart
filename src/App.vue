@@ -39,4 +39,10 @@ const routes = computed(() => {
   margin: 2rem;
   padding: 0;
 }
+
+@media only screen and (max-width: 600px) {
+  .title {
+    margin: 2rem auto;
+  }
+}
 </style>
