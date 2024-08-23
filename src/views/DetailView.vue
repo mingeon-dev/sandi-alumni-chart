@@ -6,7 +6,7 @@ import { FIELD_NAME, getDataByFilter, getDetailByFieldNames } from '@/util/DataH
 
 const route = useRoute()
 
-const item = computed(() => getDataByFilter(FIELD_NAME.ID, route.query[FIELD_NAME.ID])[0])
+const item = computed(() => getDataByFilter(FIELD_NAME.ID, route.query.id)[0])
 
 const detail = computed(() =>
   getDetailByFieldNames(

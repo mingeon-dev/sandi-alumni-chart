@@ -40,8 +40,8 @@ onMounted(() => {
 })
 
 const initDataByQuery = () => {
-  const [path, value] = Object.entries(route.query)?.[0] ?? []
-  filteredData.value = getDataByFilter(path, value)
+  const { title, value } = route.query
+  filteredData.value = getDataByFilter(title, value)
 }
 
 const getDetail = (item) =>
@@ -55,7 +55,7 @@ const getDetail = (item) =>
   ])
 
 const handleRowClick = (event, { item }) => {
-  router.push({ path: '/detail', query: { id: item.id } })
+  router.push({ path: '/detail', query: { ...route.query, id: item.id } })
 }
 </script>
 

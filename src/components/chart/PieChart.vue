@@ -38,7 +38,7 @@ const createChart = () => {
         if (elements[0]) {
           router.push({
             path: '/list',
-            query: { [props.field]: chart.data.labels[elements[0].index] }
+            query: { title: props.field, value: chart.data.labels[elements[0].index] }
           })
         }
       },

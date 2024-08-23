@@ -1,30 +1,32 @@
 <script setup>
-import { computed } from 'vue'
+import { watch, ref } from 'vue'
 import { RouterView } from 'vue-router'
 import { useRoute } from 'vue-router'
 import { getTitle } from './util/DataHelper'
 
 const route = useRoute()
 
-const breadcrumb2 = computed(() => {
-  if (route.path === '/list') {
-    const [key, value] = Object.entries(route.query)?.[0] ?? []
-    return key
-      ? [{ title: `[${getTitle(key)}] ${value}`, href: `./list?${key}=${value}`, disabled: false }]
-      : [{ title: '전체', href: './list', disabled: false }]
-  } else {
-    return []
-  }
-})
+const FIRST_PATH = { title: '돌쇠 졸업생 현황', href: './', disabled: false }
+const SECOND_PATH = { title: '전체', href: './list', disabled: false }
 
-const routes = computed(() => {
-  return [
-    {
-      title: '돌쇠 졸업생 현황',
-      href: './',
-      disabled: false
-    },
-    ...breadcrumb2.value
+const routes = ref([])
+
+watch(route, () => {
+  const { title, value, id } = route.query
+  routes.value = [
+    FIRST_PATH,
+    ...(title && value
+      ? [
+          {
+            title: `[${getTitle(title)}] ${value}`,
+            href: `./list?title=${title}&value=${value}`,
+            disabled: false
+          }
+        ]
+      : route.name !== 'home'
+        ? [SECOND_PATH]
+        : []),
+    ...(id ? ['?'] : [])
   ]
 })
 </script>
