@@ -71,7 +71,6 @@ import { isMobile } from '@/util/MediaQuery'
 
 .info-label {
   color: #9e9e9e;
-  font-weight: bold;
 }
 
 .button {
