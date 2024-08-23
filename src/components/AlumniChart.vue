@@ -9,7 +9,7 @@ import { isMobile } from '@/util/MediaQuery'
 <template>
   <div class="info-area">
     <v-icon class="info-icon" color="#9E9E9E" :icon="mdiInformation"></v-icon>
-    <span>차트를 클릭하면 항목별 리스트를 볼 수 있어요.</span>
+    <span class="info-label">차트를 클릭하면 항목별 리스트를 볼 수 있어요.</span>
     <v-btn
       v-if="!isMobile"
       class="button"
@@ -67,6 +67,11 @@ import { isMobile } from '@/util/MediaQuery'
 .info-icon {
   margin: 0 5px;
   vertical-align: bottom;
+}
+
+.info-label {
+  color: #9e9e9e;
+  font-weight: bold;
 }
 
 .button {
