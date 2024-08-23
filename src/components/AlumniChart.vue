@@ -19,7 +19,7 @@ import { isMobile } from '@/util/MediaQuery'
       >전체 리스트 보기</v-btn
     >
   </div>
-  <v-btn v-if="isMobile" class="button-mobile" elevation="16" @click="$router.push('/list')"
+  <v-btn v-if="isMobile" class="button-mobile" elevation="4" @click="$router.push('/list')"
     >전체 리스트 보기</v-btn
   >
   <div class="container">
