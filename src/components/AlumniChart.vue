@@ -2,7 +2,7 @@
 import { mdiInformation } from '@mdi/js'
 import PieChart from './chart/PieChart.vue'
 import HorizontalBarChart from './chart/HorizontalBarChart.vue'
-import { FIELD_NAME, NESTED_FIELD_NAME, getTitle, calcStatistics } from '@/util/DataHelper'
+import { FIELD_NAME, getTitle, calcStatistics } from '@/util/DataHelper'
 import { isMobile } from '@/util/MediaQuery'
 </script>
 
@@ -26,28 +26,28 @@ import { isMobile } from '@/util/MediaQuery'
     <v-card class="card" :title="getTitle(FIELD_NAME.MAJOR)" elevation="16">
       <PieChart :field="FIELD_NAME.MAJOR" :data="calcStatistics(FIELD_NAME.MAJOR)"></PieChart>
     </v-card>
-    <v-card class="card" :title="getTitle(NESTED_FIELD_NAME.MASTER_UNIVERSITY)" elevation="16">
+    <v-card class="card" :title="getTitle(FIELD_NAME.MASTER_UNIVERSITY)" elevation="16">
       <PieChart
-        :field="NESTED_FIELD_NAME.MASTER_UNIVERSITY"
-        :data="calcStatistics(NESTED_FIELD_NAME.MASTER_UNIVERSITY)"
+        :field="FIELD_NAME.MASTER_UNIVERSITY"
+        :data="calcStatistics(FIELD_NAME.MASTER_UNIVERSITY)"
       ></PieChart>
     </v-card>
-    <v-card class="card" :title="getTitle(NESTED_FIELD_NAME.PH_D_UNIVERSITY)" elevation="16">
+    <v-card class="card" :title="getTitle(FIELD_NAME.PH_D_UNIVERSITY)" elevation="16">
       <PieChart
-        :field="NESTED_FIELD_NAME.PH_D_UNIVERSITY"
-        :data="calcStatistics(NESTED_FIELD_NAME.PH_D_UNIVERSITY)"
+        :field="FIELD_NAME.PH_D_UNIVERSITY"
+        :data="calcStatistics(FIELD_NAME.PH_D_UNIVERSITY)"
       ></PieChart>
     </v-card>
-    <v-card class="card" :title="getTitle(NESTED_FIELD_NAME.COMPANY_NAME)" elevation="16">
+    <v-card class="card" :title="getTitle(FIELD_NAME.COMPANY_NAME)" elevation="16">
       <HorizontalBarChart
-        :field="NESTED_FIELD_NAME.COMPANY_NAME"
-        :data="calcStatistics(NESTED_FIELD_NAME.COMPANY_NAME)"
+        :field="FIELD_NAME.COMPANY_NAME"
+        :data="calcStatistics(FIELD_NAME.COMPANY_NAME)"
       ></HorizontalBarChart>
     </v-card>
-    <v-card class="card" :title="getTitle(NESTED_FIELD_NAME.COMPANY_TASK_GROUP)" elevation="16">
+    <v-card class="card" :title="getTitle(FIELD_NAME.COMPANY_TASK_GROUP)" elevation="16">
       <HorizontalBarChart
-        :field="NESTED_FIELD_NAME.COMPANY_TASK_GROUP"
-        :data="calcStatistics(NESTED_FIELD_NAME.COMPANY_TASK_GROUP)"
+        :field="FIELD_NAME.COMPANY_TASK_GROUP"
+        :data="calcStatistics(FIELD_NAME.COMPANY_TASK_GROUP)"
       ></HorizontalBarChart>
     </v-card>
     <v-card class="card" :title="getTitle(FIELD_NAME.YEAR_OF_ADMISSION)" elevation="16">

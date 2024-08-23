@@ -1,33 +1,66 @@
 import data from '@/assets/data.json'
 
 export const FIELD_NAME = {
+  ID: 'id',
+  YEAR_OF_ADMISSION: 'yearOfAdmission',
   MAJOR: 'major',
-  MASTER: 'master',
-  PH_D: 'phD',
-  UNIVERSITY: 'university',
-  COMPANY: 'company',
-  NAME: 'name',
-  TASK_GROUP: 'taskGroup',
-  YEAR_OF_ADMISSION: 'yearOfAdmission'
-}
-
-export const NESTED_FIELD_NAME = {
   MASTER_UNIVERSITY: 'master.university',
+  MASTER_MAJOR: 'master.major',
+  MASTER_PROFESSOR: 'master.professor',
+  MASTER_CONCENTRATION: 'master.concentration',
   PH_D_UNIVERSITY: 'phD.university',
+  PH_D_MAJOR: 'phD.major',
+  PH_D_PROFESSOR: 'phD.professor',
+  PH_D_CONCENTRATION: 'phD.concentration',
   COMPANY_NAME: 'company.name',
-  COMPANY_TASK_GROUP: 'company.taskGroup'
+  COMPANY_TEAM: 'company.team',
+  COMPANY_TASK: 'company.task',
+  COMPANY_TASK_GROUP: 'company.taskGroup',
+  COMPANY_PREVIOUS: 'company.previous',
+  SUBJECTS_ELECTRONIC_ENGINEERING_1: 'subjects.electronicEngineering1',
+  SUBJECTS_ELECTRONIC_ENGINEERING_2: 'subjects.electronicEngineering2',
+  SUBJECTS_ELECTRONIC_ENGINEERING_3: 'subjects.electronicEngineering3',
+  SUBJECTS_COMPUTER_ENGINEERING_1: 'subjects.computerEngineering1',
+  SUBJECTS_COMPUTER_ENGINEERING_2: 'subjects.computerEngineering2',
+  SUBJECTS_COMPUTER_ENGINEERING_3: 'subjects.computerEngineering3'
 }
 
 const TITLES = {
+  [FIELD_NAME.YEAR_OF_ADMISSION]: '학번',
   [FIELD_NAME.MAJOR]: '학사 전공',
-  [NESTED_FIELD_NAME.MASTER_UNIVERSITY]: '석사 대학원',
-  [NESTED_FIELD_NAME.PH_D_UNIVERSITY]: '박사 대학원',
-  [NESTED_FIELD_NAME.COMPANY_NAME]: '회사명',
-  [NESTED_FIELD_NAME.COMPANY_TASK_GROUP]: '업무 직군',
-  [FIELD_NAME.YEAR_OF_ADMISSION]: '학번'
+  [FIELD_NAME.MASTER_UNIVERSITY]: '석사 대학원',
+  [FIELD_NAME.MASTER_MAJOR]: '석사 전공',
+  [FIELD_NAME.MASTER_PROFESSOR]: '석사 지도교수',
+  [FIELD_NAME.MASTER_CONCENTRATION]: '석사 연구분야',
+  [FIELD_NAME.PH_D_UNIVERSITY]: '박사 대학원',
+  [FIELD_NAME.PH_D_MAJOR]: '박사 전공',
+  [FIELD_NAME.PH_D_PROFESSOR]: '박사 지도교수',
+  [FIELD_NAME.PH_D_CONCENTRATION]: '박사 연구분야',
+  [FIELD_NAME.COMPANY_NAME]: '회사명',
+  [FIELD_NAME.COMPANY_TEAM]: '소속 사업부',
+  [FIELD_NAME.COMPANY_TASK]: '담당 업무',
+  [FIELD_NAME.COMPANY_TASK_GROUP]: '업무 직군',
+  [FIELD_NAME.COMPANY_PREVIOUS]: '이전 근무 이력',
+  [FIELD_NAME.SUBJECTS_ELECTRONIC_ENGINEERING_1]: '업무 관련 전자공학 전공기초 과목',
+  [FIELD_NAME.SUBJECTS_ELECTRONIC_ENGINEERING_2]: '업무 관련 전자공학 전공필수 과목',
+  [FIELD_NAME.SUBJECTS_ELECTRONIC_ENGINEERING_3]: '업무 관련 전자공학 전공선택 과목',
+  [FIELD_NAME.SUBJECTS_COMPUTER_ENGINEERING_1]: '업무 관련 컴퓨터공학 전공기초 과목',
+  [FIELD_NAME.SUBJECTS_COMPUTER_ENGINEERING_2]: '업무 관련 컴퓨터공학 전공필수 과목',
+  [FIELD_NAME.SUBJECTS_COMPUTER_ENGINEERING_3]: '업무 관련 컴퓨터공학 전공선택 과목'
 }
 
 export const getTitle = (key) => TITLES[key] || ''
+
+export const getValue = (item, path) => {
+  const keys = path.split('.')
+  return keys.reduce((xs, x) => xs?.[x] ?? null, item)
+}
+
+export const getDetailByFieldNames = (item, fieldNames) =>
+  fieldNames.map((fieldName) => ({
+    title: getTitle(fieldName),
+    value: getValue(item, fieldName)
+  }))
 
 export const getDataByFilter = (path, value) => {
   if (!path) return data
@@ -51,3 +84,6 @@ export const calcStatistics = (path) => {
     return accumulator
   }, {})
 }
+
+export const getTitleForMobile = (title) =>
+  title.replace('관련 ', '관련\n').replace('공학 ', '공학\n')

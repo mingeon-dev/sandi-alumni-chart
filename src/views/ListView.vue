@@ -1,39 +1,37 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { mdiMagnify } from '@mdi/js'
-import { useRoute } from 'vue-router'
-import { FIELD_NAME, NESTED_FIELD_NAME, getTitle, getDataByFilter } from '@/util/DataHelper'
+import ItemDetail from '@/components/ItemDetail.vue'
+import { useRoute, useRouter } from 'vue-router'
+import { FIELD_NAME, getTitle, getDetailByFieldNames, getDataByFilter } from '@/util/DataHelper'
 import { isMobile } from '@/util/MediaQuery'
 
 const route = useRoute()
+const router = useRouter()
 
 const search = ref()
 const filteredData = ref([])
 const headers = ref([
   { title: getTitle(FIELD_NAME.MAJOR), key: FIELD_NAME.MAJOR, nowrap: true },
   {
-    title: getTitle(NESTED_FIELD_NAME.MASTER_UNIVERSITY),
-    key: NESTED_FIELD_NAME.MASTER_UNIVERSITY,
-    nowrap: true
+    title: getTitle(FIELD_NAME.MASTER_UNIVERSITY),
+    key: FIELD_NAME.MASTER_UNIVERSITY
   },
   {
-    title: getTitle(NESTED_FIELD_NAME.PH_D_UNIVERSITY),
-    key: NESTED_FIELD_NAME.PH_D_UNIVERSITY,
-    nowrap: true
+    title: getTitle(FIELD_NAME.PH_D_UNIVERSITY),
+    key: FIELD_NAME.PH_D_UNIVERSITY
   },
   {
-    title: getTitle(NESTED_FIELD_NAME.COMPANY_NAME),
-    key: NESTED_FIELD_NAME.COMPANY_NAME,
-    nowrap: true
+    title: getTitle(FIELD_NAME.COMPANY_NAME),
+    key: FIELD_NAME.COMPANY_NAME
   },
   {
-    title: getTitle(NESTED_FIELD_NAME.COMPANY_TASK_GROUP),
-    key: NESTED_FIELD_NAME.COMPANY_TASK_GROUP
+    title: getTitle(FIELD_NAME.COMPANY_TASK_GROUP),
+    key: FIELD_NAME.COMPANY_TASK_GROUP
   },
   {
     title: getTitle(FIELD_NAME.YEAR_OF_ADMISSION),
-    key: FIELD_NAME.YEAR_OF_ADMISSION,
-    nowrap: true
+    key: FIELD_NAME.YEAR_OF_ADMISSION
   }
 ])
 
@@ -46,9 +44,18 @@ const initDataByQuery = () => {
   filteredData.value = getDataByFilter(path, value)
 }
 
-const getValue = (item, path) => {
-  const keys = path.split('.')
-  return keys.reduce((xs, x) => xs?.[x] ?? null, item)
+const getDetail = (item) =>
+  getDetailByFieldNames(item, [
+    FIELD_NAME.MAJOR,
+    FIELD_NAME.MASTER_UNIVERSITY,
+    FIELD_NAME.PH_D_UNIVERSITY,
+    FIELD_NAME.COMPANY_NAME,
+    FIELD_NAME.COMPANY_TASK_GROUP,
+    FIELD_NAME.YEAR_OF_ADMISSION
+  ])
+
+const handleRowClick = (event, { item }) => {
+  router.push({ path: '/detail', query: { id: item.id } })
 }
 </script>
 
@@ -57,34 +64,10 @@ const getValue = (item, path) => {
     <v-data-iterator :items="filteredData" :items-per-page="-1">
       <template v-slot:default="{ items }">
         <v-sheet v-for="(item, i) in items" :key="i" class="sheet" elevation="16">
-          <v-table density="compact">
-            <tbody>
-              <tr align="right">
-                <th class="table-header">{{ getTitle(FIELD_NAME.MAJOR) }}</th>
-                <td>{{ getValue(item.raw, FIELD_NAME.MAJOR) }}</td>
-              </tr>
-              <tr v-if="item.raw[FIELD_NAME.MASTER]" align="right">
-                <th class="table-header">{{ getTitle(NESTED_FIELD_NAME.MASTER_UNIVERSITY) }}</th>
-                <td>{{ getValue(item.raw, NESTED_FIELD_NAME.MASTER_UNIVERSITY) }}</td>
-              </tr>
-              <tr v-if="item.raw[FIELD_NAME.PH_D]" align="right">
-                <th class="table-header">{{ getTitle(NESTED_FIELD_NAME.PH_D_UNIVERSITY) }}</th>
-                <td>{{ getValue(item.raw, NESTED_FIELD_NAME.PH_D_UNIVERSITY) }}</td>
-              </tr>
-              <tr align="right">
-                <th class="table-header">{{ getTitle(NESTED_FIELD_NAME.COMPANY_NAME) }}</th>
-                <td>{{ getValue(item.raw, NESTED_FIELD_NAME.COMPANY_NAME) }}</td>
-              </tr>
-              <tr align="right">
-                <th class="table-header">{{ getTitle(NESTED_FIELD_NAME.COMPANY_TASK_GROUP) }}</th>
-                <td>{{ getValue(item.raw, NESTED_FIELD_NAME.COMPANY_TASK_GROUP) }}</td>
-              </tr>
-              <tr align="right">
-                <th class="table-header">{{ getTitle(FIELD_NAME.YEAR_OF_ADMISSION) }}</th>
-                <td>{{ getValue(item.raw, FIELD_NAME.YEAR_OF_ADMISSION) }}</td>
-              </tr>
-            </tbody>
-          </v-table>
+          <ItemDetail :data="getDetail(item.raw)"></ItemDetail>
+          <div class="button-container">
+            <v-btn @click="(e) => handleRowClick(e, { item: item.raw })">자세히 보기</v-btn>
+          </div>
         </v-sheet>
       </template>
     </v-data-iterator>
@@ -100,12 +83,15 @@ const getValue = (item, path) => {
       single-line
     ></v-text-field>
     <v-data-table
+      class="tableview"
       :headers="headers"
       :items="filteredData"
       :items-per-page="-1"
       :search="search"
       width="1000"
+      hover
       hide-default-footer
+      @click:row="handleRowClick"
     ></v-data-table>
   </v-sheet>
 </template>
@@ -128,8 +114,20 @@ const getValue = (item, path) => {
     padding: 1rem;
   }
 
-  .table-header {
-    width: 100px;
+  .button-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
   }
+}
+</style>
+
+<style>
+.tableview thead .v-data-table__td {
+  text-wrap: nowrap;
+}
+
+.tableview tbody .v-data-table__td {
+  white-space: pre-line;
 }
 </style>
