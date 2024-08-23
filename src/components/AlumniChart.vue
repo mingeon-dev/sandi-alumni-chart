@@ -1,10 +1,27 @@
 <script setup>
+import { mdiInformation } from '@mdi/js'
 import PieChart from './chart/PieChart.vue'
 import HorizontalBarChart from './chart/HorizontalBarChart.vue'
 import { FIELD_NAME, NESTED_FIELD_NAME, getTitle, calcStatistics } from '@/util/DataHelper'
+import { isMobile } from '@/util/MediaQuery'
 </script>
 
 <template>
+  <div class="info-area">
+    <v-icon class="info-icon" color="#9E9E9E" :icon="mdiInformation"></v-icon>
+    <span>차트를 클릭하면 항목별 리스트를 볼 수 있어요.</span>
+    <v-btn
+      v-if="!isMobile"
+      class="button"
+      color="primary"
+      density="compact"
+      @click="$router.push('/list')"
+      >전체 리스트 보기</v-btn
+    >
+  </div>
+  <v-btn v-if="isMobile" class="button-mobile" @click="$router.push('/list')"
+    >전체 리스트 보기</v-btn
+  >
   <div class="container">
     <v-card class="card" :title="getTitle(FIELD_NAME.MAJOR)" elevation="16">
       <PieChart :field="FIELD_NAME.MAJOR" :data="calcStatistics(FIELD_NAME.MAJOR)"></PieChart>
@@ -43,6 +60,20 @@ import { FIELD_NAME, NESTED_FIELD_NAME, getTitle, calcStatistics } from '@/util/
 </template>
 
 <style scoped>
+.info-area {
+  margin: 2rem;
+}
+
+.info-icon {
+  margin: 0 5px;
+  vertical-align: bottom;
+}
+
+.button {
+  margin: 0 20px;
+  vertical-align: text-bottom;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -56,6 +87,16 @@ import { FIELD_NAME, NESTED_FIELD_NAME, getTitle, calcStatistics } from '@/util/
 }
 
 @media only screen and (max-width: 600px) {
+  .info-area {
+    margin: 0 auto 2rem;
+  }
+
+  .button-mobile {
+    display: block;
+    width: 350px;
+    margin: 0 auto 2rem;
+  }
+
   .card {
     width: 350px;
     height: auto;
