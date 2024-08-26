@@ -1,6 +1,6 @@
 export default {
   id: 'pieLabelsLine',
-  afterDraw(chart) {
+  afterDraw(chart, args, options) {
     const { ctx, width, height } = chart
 
     const cx = chart._metasets[0].data[0].x
@@ -12,7 +12,10 @@ export default {
     chart.data.datasets.forEach((dataset, i) => {
       chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
         const percent = ((chart.data.datasets[0].data[index] * 100) / sum).toFixed(0)
-        const content = `${chart.data.labels[index]} ${percent}%`
+        const content =
+          options.unit === 'percent'
+            ? `${chart.data.labels[index]} ${percent}%`
+            : `${chart.data.labels[index]} ${chart.data.datasets[0].data[index]}명`
 
         if (percent < 5) {
           yOffset += 10

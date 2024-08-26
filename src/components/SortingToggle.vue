@@ -1,6 +1,7 @@
 <script setup>
 defineProps({
-  title: String
+  title: String,
+  values: Array
 })
 
 const sortingValue = defineModel()
@@ -16,11 +17,8 @@ const sortingValue = defineModel()
       variant="outlined"
       mandatory
     >
-      <v-btn value="label">
-        <span>이름순</span>
-      </v-btn>
-      <v-btn value="data">
-        <span>인원순</span>
+      <v-btn v-for="(item, i) in values" :key="i" :value="item.value">
+        <span>{{ item.text }}</span>
       </v-btn>
     </v-btn-toggle>
   </div>

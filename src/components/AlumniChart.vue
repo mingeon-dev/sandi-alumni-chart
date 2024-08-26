@@ -7,6 +7,17 @@ import SortingToggle from './SortingToggle.vue'
 import { FIELD_NAME, getTitle, calcStatistics } from '@/util/DataHelper'
 import { isMobile } from '@/util/MediaQuery'
 
+const pieUnits = ref([
+  { value: 'percent', text: '%' },
+  { value: 'value', text: '명' }
+])
+const unitMajor = ref('percent')
+const unitMaster = ref('percent')
+const unitPhd = ref('percent')
+const barSortingValues = ref([
+  { value: 'label', text: '이름순' },
+  { value: 'data', text: '인원순' }
+])
 const sortingCompanyName = ref('label')
 const sortingTaskGroup = ref('label')
 </script>
@@ -29,18 +40,48 @@ const sortingTaskGroup = ref('label')
   >
   <div class="container">
     <v-card class="card" :title="getTitle(FIELD_NAME.MAJOR)" elevation="16">
-      <PieChart :field="FIELD_NAME.MAJOR" :data="calcStatistics(FIELD_NAME.MAJOR)"></PieChart>
+      <template v-slot:title>
+        <SortingToggle
+          v-model="unitMajor"
+          class="card-title-toggle"
+          :title="getTitle(FIELD_NAME.MAJOR)"
+          :values="pieUnits"
+        ></SortingToggle>
+      </template>
+      <PieChart
+        :field="FIELD_NAME.MAJOR"
+        :data="calcStatistics(FIELD_NAME.MAJOR)"
+        :unit="unitMajor"
+      ></PieChart>
     </v-card>
     <v-card class="card" :title="getTitle(FIELD_NAME.MASTER_UNIVERSITY)" elevation="16">
+      <template v-slot:title>
+        <SortingToggle
+          v-model="unitMaster"
+          class="card-title-toggle"
+          :title="getTitle(FIELD_NAME.MAJOR)"
+          :values="pieUnits"
+        ></SortingToggle>
+      </template>
       <PieChart
         :field="FIELD_NAME.MASTER_UNIVERSITY"
         :data="calcStatistics(FIELD_NAME.MASTER_UNIVERSITY)"
+        :unit="unitMaster"
       ></PieChart>
     </v-card>
     <v-card class="card" :title="getTitle(FIELD_NAME.PH_D_UNIVERSITY)" elevation="16">
+      <template v-slot:title>
+        <SortingToggle
+          v-model="unitPhd"
+          class="card-title-toggle"
+          :title="getTitle(FIELD_NAME.MAJOR)"
+          :values="pieUnits"
+        ></SortingToggle>
+      </template>
       <PieChart
         :field="FIELD_NAME.PH_D_UNIVERSITY"
         :data="calcStatistics(FIELD_NAME.PH_D_UNIVERSITY)"
+        :unit="unitPhd"
       ></PieChart>
     </v-card>
     <v-card class="card bar" elevation="16">
@@ -49,6 +90,7 @@ const sortingTaskGroup = ref('label')
           v-model="sortingCompanyName"
           class="card-title-toggle"
           :title="getTitle(FIELD_NAME.COMPANY_NAME)"
+          :values="barSortingValues"
         ></SortingToggle>
       </template>
       <HorizontalBarChart
@@ -63,6 +105,7 @@ const sortingTaskGroup = ref('label')
           v-model="sortingTaskGroup"
           class="card-title-toggle"
           :title="getTitle(FIELD_NAME.COMPANY_TASK_GROUP)"
+          :values="barSortingValues"
         ></SortingToggle>
       </template>
       <HorizontalBarChart

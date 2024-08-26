@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { Chart } from 'chart.js/auto'
 import PieLabelsLine from '@/util/PieLabelsLine'
 import { useRouter } from 'vue-router'
@@ -8,22 +8,32 @@ const router = useRouter()
 
 const props = defineProps({
   field: String,
-  data: Object
+  data: Object,
+  unit: String
 })
 
 const canvas = ref()
+let chart = null
 
 const data = computed(() => ({
   labels: Object.keys(props.data),
   datasets: [{ data: Object.values(props.data) }]
 }))
 
+watch(
+  () => props.unit,
+  () => {
+    chart.options.plugins.pieLabelsLine.unit = props.unit
+    chart.update()
+  }
+)
+
 onMounted(() => {
   createChart()
 })
 
 const createChart = () => {
-  new Chart(canvas.value, {
+  chart = new Chart(canvas.value, {
     type: 'pie',
     data: data.value,
     plugins: [PieLabelsLine],
@@ -49,9 +59,15 @@ const createChart = () => {
         tooltip: {
           callbacks: {
             label: (context) => {
-              return `${context.formattedValue}명`
+              const sum = context.dataset.data.reduce((a, b) => a + b, 0)
+              return props.unit === 'percent'
+                ? `${context.formattedValue}명`
+                : `${((context.raw * 100) / sum).toFixed(0)}%`
             }
           }
+        },
+        pieLabelsLine: {
+          unit: props.unit
         }
       }
     }
