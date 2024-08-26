@@ -109,6 +109,10 @@ import { isMobile } from '@/util/MediaQuery'
     margin: 0 auto 2rem;
   }
 
+  .container {
+    margin: 0;
+  }
+
   .card {
     width: 350px;
     height: auto;
