@@ -72,7 +72,7 @@ const createChart = () => {
           }
         }
       },
-      aspectRatio: isMobile ? 0.5 : 0.9
+      aspectRatio: isMobile ? 0.5 : 0.6
     }
   })
 }

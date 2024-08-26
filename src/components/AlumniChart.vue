@@ -38,19 +38,19 @@ import { isMobile } from '@/util/MediaQuery'
         :data="calcStatistics(FIELD_NAME.PH_D_UNIVERSITY)"
       ></PieChart>
     </v-card>
-    <v-card class="card" :title="getTitle(FIELD_NAME.COMPANY_NAME)" elevation="16">
+    <v-card class="card bar" :title="getTitle(FIELD_NAME.COMPANY_NAME)" elevation="16">
       <HorizontalBarChart
         :field="FIELD_NAME.COMPANY_NAME"
         :data="calcStatistics(FIELD_NAME.COMPANY_NAME)"
       ></HorizontalBarChart>
     </v-card>
-    <v-card class="card" :title="getTitle(FIELD_NAME.COMPANY_TASK_GROUP)" elevation="16">
+    <v-card class="card bar" :title="getTitle(FIELD_NAME.COMPANY_TASK_GROUP)" elevation="16">
       <HorizontalBarChart
         :field="FIELD_NAME.COMPANY_TASK_GROUP"
         :data="calcStatistics(FIELD_NAME.COMPANY_TASK_GROUP)"
       ></HorizontalBarChart>
     </v-card>
-    <v-card class="card" :title="getTitle(FIELD_NAME.YEAR_OF_ADMISSION)" elevation="16">
+    <v-card class="card bar" :title="getTitle(FIELD_NAME.YEAR_OF_ADMISSION)" elevation="16">
       <HorizontalBarChart
         :field="FIELD_NAME.YEAR_OF_ADMISSION"
         :data="calcStatistics(FIELD_NAME.YEAR_OF_ADMISSION)"
@@ -81,13 +81,21 @@ import { isMobile } from '@/util/MediaQuery'
 .container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center;
+  max-width: 1320px;
+  margin: 0 auto 20px;
 }
 
 .card {
   width: 400px;
   height: 496px;
-  margin-left: 2rem;
-  margin-bottom: 2rem;
+  margin: 20px;
+}
+
+.bar {
+  height: 716px;
 }
 
 @media only screen and (max-width: 600px) {
