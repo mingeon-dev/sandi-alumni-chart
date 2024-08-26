@@ -1,9 +1,14 @@
 <script setup>
+import { ref } from 'vue'
 import { mdiInformation } from '@mdi/js'
 import PieChart from './chart/PieChart.vue'
 import HorizontalBarChart from './chart/HorizontalBarChart.vue'
+import SortingToggle from './SortingToggle.vue'
 import { FIELD_NAME, getTitle, calcStatistics } from '@/util/DataHelper'
 import { isMobile } from '@/util/MediaQuery'
+
+const sortingCompanyName = ref('label')
+const sortingTaskGroup = ref('label')
 </script>
 
 <template>
@@ -38,16 +43,32 @@ import { isMobile } from '@/util/MediaQuery'
         :data="calcStatistics(FIELD_NAME.PH_D_UNIVERSITY)"
       ></PieChart>
     </v-card>
-    <v-card class="card bar" :title="getTitle(FIELD_NAME.COMPANY_NAME)" elevation="16">
+    <v-card class="card bar" elevation="16">
+      <template v-slot:title>
+        <SortingToggle
+          v-model="sortingCompanyName"
+          class="card-title-toggle"
+          :title="getTitle(FIELD_NAME.COMPANY_NAME)"
+        ></SortingToggle>
+      </template>
       <HorizontalBarChart
         :field="FIELD_NAME.COMPANY_NAME"
         :data="calcStatistics(FIELD_NAME.COMPANY_NAME)"
+        :sorting-value="sortingCompanyName"
       ></HorizontalBarChart>
     </v-card>
-    <v-card class="card bar" :title="getTitle(FIELD_NAME.COMPANY_TASK_GROUP)" elevation="16">
+    <v-card class="card bar" elevation="16">
+      <template v-slot:title>
+        <SortingToggle
+          v-model="sortingTaskGroup"
+          class="card-title-toggle"
+          :title="getTitle(FIELD_NAME.COMPANY_TASK_GROUP)"
+        ></SortingToggle>
+      </template>
       <HorizontalBarChart
         :field="FIELD_NAME.COMPANY_TASK_GROUP"
         :data="calcStatistics(FIELD_NAME.COMPANY_TASK_GROUP)"
+        :sorting-value="sortingTaskGroup"
       ></HorizontalBarChart>
     </v-card>
     <v-card class="card bar" :title="getTitle(FIELD_NAME.YEAR_OF_ADMISSION)" elevation="16">

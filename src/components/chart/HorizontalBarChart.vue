@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { Chart } from 'chart.js/auto'
 import { isMobile } from '@/util/MediaQuery'
 import { useRouter } from 'vue-router'
@@ -8,14 +8,22 @@ const router = useRouter()
 
 const props = defineProps({
   field: String,
-  data: Object
+  data: Object,
+  sortingValue: String
 })
 
 const canvas = ref()
+let chart = null
 
 const data = computed(() => {
   const sortedData = Object.entries(props.data)
-    .sort(([, a], [, b]) => b - a)
+    .sort(([label1, data1], [label2, data2]) => {
+      if (props.sortingValue === 'label') {
+        return label1 > label2 ? 1 : -1
+      } else {
+        return data2 - data1
+      }
+    })
     .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
   return {
     labels: Object.keys(sortedData),
@@ -23,12 +31,17 @@ const data = computed(() => {
   }
 })
 
+watch(data, () => {
+  chart.data = data.value
+  chart.update()
+})
+
 onMounted(() => {
   createChart()
 })
 
 const createChart = () => {
-  new Chart(canvas.value, {
+  chart = new Chart(canvas.value, {
     type: 'bar',
     data: data.value,
     options: {
