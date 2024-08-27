@@ -59,7 +59,7 @@ const sortingTaskGroup = ref('label')
         <SortingToggle
           v-model="unitMaster"
           class="card-title-toggle"
-          :title="getTitle(FIELD_NAME.MAJOR)"
+          :title="getTitle(FIELD_NAME.MASTER_UNIVERSITY)"
           :values="pieUnits"
         ></SortingToggle>
       </template>
@@ -74,7 +74,7 @@ const sortingTaskGroup = ref('label')
         <SortingToggle
           v-model="unitPhd"
           class="card-title-toggle"
-          :title="getTitle(FIELD_NAME.MAJOR)"
+          :title="getTitle(FIELD_NAME.PH_D_UNIVERSITY)"
           :values="pieUnits"
         ></SortingToggle>
       </template>
