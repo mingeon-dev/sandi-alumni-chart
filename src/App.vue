@@ -48,7 +48,7 @@ watch(route, () => {
 
 .title {
   flex: none;
-  margin: 2rem;
+  margin: 2rem 2rem 0;
   padding: 0;
 }
 
@@ -57,16 +57,16 @@ watch(route, () => {
   color: #9e9e9e;
   text-align: right;
   /* margin: 1rem 1rem 0; */
-  margin: 2rem 2rem 2rem auto;
+  margin: 2rem 2rem 0 auto;
 }
 
 @media only screen and (max-width: 600px) {
   .title {
-    margin: 2rem 5px;
+    margin: 1rem 0 2rem 5px;
   }
 
   .header-info {
-    margin: 2rem 5px 2rem auto;
+    margin: 1rem 5px 2rem auto;
   }
 }
 </style>
