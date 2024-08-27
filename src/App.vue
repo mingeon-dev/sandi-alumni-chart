@@ -1,5 +1,5 @@
 <script setup>
-import { watch, ref } from 'vue'
+import { computed, watch, ref } from 'vue'
 import { RouterView } from 'vue-router'
 import { useRoute } from 'vue-router'
 import { getTitle } from './util/DataHelper'
@@ -10,6 +10,8 @@ const FIRST_PATH = { title: '돌쇠 졸업생 현황', href: './', disabled: fal
 const SECOND_PATH = { title: '전체', href: './list', disabled: false }
 
 const routes = ref([])
+
+const showInfo = computed(() => route.name === 'home')
 
 watch(route, () => {
   const { title, value, id } = route.query
@@ -32,31 +34,39 @@ watch(route, () => {
 </script>
 
 <template>
-  <p class="footer-info">업데이트: 2024년 8월 21일</p>
-  <v-breadcrumbs class="title" :items="routes"></v-breadcrumbs>
+  <div class="header">
+    <v-breadcrumbs class="title" :items="routes"></v-breadcrumbs>
+    <p v-if="showInfo" class="header-info">업데이트: 2024년 8월 27일</p>
+  </div>
   <RouterView />
 </template>
 
 <style scoped>
+.header {
+  display: flex;
+}
+
 .title {
+  flex: none;
   margin: 2rem;
   padding: 0;
 }
 
-.footer-info {
+.header-info {
   font-size: 14px;
   color: #9e9e9e;
   text-align: right;
-  margin: 1rem 1rem 0;
+  /* margin: 1rem 1rem 0; */
+  margin: 2rem 2rem 2rem auto;
 }
 
 @media only screen and (max-width: 600px) {
   .title {
-    margin: 2rem auto;
+    margin: 2rem 5px;
   }
 
-  .footer-info {
-    margin: 10px 5px 0 0;
+  .header-info {
+    margin: 2rem 5px 2rem auto;
   }
 }
 </style>
