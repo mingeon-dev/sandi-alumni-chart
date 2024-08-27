@@ -4,6 +4,7 @@ export const FIELD_NAME = {
   ID: 'id',
   YEAR_OF_ADMISSION: 'yearOfAdmission',
   MAJOR: 'major',
+  DEGREE: 'degree',
   MASTER_UNIVERSITY: 'master.university',
   MASTER_MAJOR: 'master.major',
   MASTER_PROFESSOR: 'master.professor',
@@ -28,6 +29,7 @@ export const FIELD_NAME = {
 const TITLES = {
   [FIELD_NAME.YEAR_OF_ADMISSION]: '학번',
   [FIELD_NAME.MAJOR]: '학사 전공',
+  [FIELD_NAME.DEGREE]: '학위',
   [FIELD_NAME.MASTER_UNIVERSITY]: '석사 대학원',
   [FIELD_NAME.MASTER_MAJOR]: '석사 전공',
   [FIELD_NAME.MASTER_PROFESSOR]: '석사 지도교수',

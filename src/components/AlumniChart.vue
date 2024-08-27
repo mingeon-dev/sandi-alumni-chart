@@ -11,7 +11,7 @@ const pieUnits = ref([
   { value: 'percent', text: '%' },
   { value: 'value', text: '명' }
 ])
-const unitMajor = ref('percent')
+const unitDegree = ref('percent')
 const unitMaster = ref('percent')
 const unitPhd = ref('percent')
 const barSortingValues = ref([
@@ -39,22 +39,22 @@ const sortingTaskGroup = ref('label')
     >전체 리스트 보기</v-btn
   >
   <div class="container">
-    <v-card class="card" :title="getTitle(FIELD_NAME.MAJOR)" elevation="16">
+    <v-card class="card" elevation="16">
       <template v-slot:title>
         <SortingToggle
-          v-model="unitMajor"
+          v-model="unitDegree"
           class="card-title-toggle"
-          :title="getTitle(FIELD_NAME.MAJOR)"
+          :title="getTitle(FIELD_NAME.DEGREE)"
           :values="pieUnits"
         ></SortingToggle>
       </template>
       <PieChart
-        :field="FIELD_NAME.MAJOR"
-        :data="calcStatistics(FIELD_NAME.MAJOR)"
-        :unit="unitMajor"
+        :field="FIELD_NAME.DEGREE"
+        :data="calcStatistics(FIELD_NAME.DEGREE)"
+        :unit="unitDegree"
       ></PieChart>
     </v-card>
-    <v-card class="card" :title="getTitle(FIELD_NAME.MASTER_UNIVERSITY)" elevation="16">
+    <v-card class="card" elevation="16">
       <template v-slot:title>
         <SortingToggle
           v-model="unitMaster"
@@ -69,7 +69,7 @@ const sortingTaskGroup = ref('label')
         :unit="unitMaster"
       ></PieChart>
     </v-card>
-    <v-card class="card" :title="getTitle(FIELD_NAME.PH_D_UNIVERSITY)" elevation="16">
+    <v-card class="card" elevation="16">
       <template v-slot:title>
         <SortingToggle
           v-model="unitPhd"
