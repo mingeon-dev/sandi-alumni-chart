@@ -32,9 +32,9 @@ watch(route, () => {
 </script>
 
 <template>
+  <p class="footer-info">업데이트: 2024년 8월 21일</p>
   <v-breadcrumbs class="title" :items="routes"></v-breadcrumbs>
   <RouterView />
-  <p class="footer-info">업데이트: 2024년 8월 21일</p>
 </template>
 
 <style scoped>
@@ -44,9 +44,10 @@ watch(route, () => {
 }
 
 .footer-info {
+  font-size: 14px;
   color: #9e9e9e;
   text-align: right;
-  margin: 0 2rem 2rem;
+  margin: 1rem 1rem 0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -55,7 +56,7 @@ watch(route, () => {
   }
 
   .footer-info {
-    margin: 0 5px 10px 0;
+    margin: 10px 5px 0 0;
   }
 }
 </style>
