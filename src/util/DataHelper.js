@@ -1,4 +1,4 @@
-import data from '@/assets/data.json'
+import data from './ExcelParser'
 
 export const FIELD_NAME = {
   ID: 'id',
@@ -66,7 +66,7 @@ export const getDataByFilter = (path, value) => {
   if (!path) return data
   const keyArray = path.split('.')
   return keyArray.length === 2
-    ? data.filter((item) => item[keyArray[0]] && item[keyArray[0]][keyArray[1]].includes(value))
+    ? data.filter((item) => item[keyArray[0]] && item[keyArray[0]][keyArray[1]]?.includes(value))
     : data.filter((item) => item[keyArray[0]].includes(value))
 }
 
@@ -76,7 +76,7 @@ export const calcStatistics = (path) => {
     keyArray.length === 2 ? data.map((item) => item[keyArray[0]]).filter((item) => item) : data
   const key = keyArray[keyArray.length - 1]
   return filteredData.reduce((accumulator, currentValue) => {
-    const values = currentValue[key].split(', ')
+    const values = currentValue[key]?.split(', ') ?? []
     values.forEach((value) => {
       if (!accumulator[value]) accumulator[value] = 0
       accumulator[value]++

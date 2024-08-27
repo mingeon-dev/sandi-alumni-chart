@@ -15,10 +15,15 @@ const props = defineProps({
 const canvas = ref()
 let chart = null
 
-const data = computed(() => ({
-  labels: Object.keys(props.data),
-  datasets: [{ data: Object.values(props.data) }]
-}))
+const data = computed(() => {
+  const sortedData = Object.entries(props.data)
+    .sort(([, a], [, b]) => b - a)
+    .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
+  return {
+    labels: Object.keys(sortedData),
+    datasets: [{ data: Object.values(sortedData) }]
+  }
+})
 
 watch(
   () => props.unit,

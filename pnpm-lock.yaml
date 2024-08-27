@@ -13,12 +13,14 @@ specifiers:
   vue: ^3.4.29
   vue-router: ^4.3.3
   vuetify: ^3.7.0
+  xlsx: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
 
 dependencies:
   chart.js: 4.4.3
   vue: 3.4.38
   vue-router: 4.4.3_vue@3.4.38
   vuetify: 3.7.0_vue@3.4.38
+  xlsx: '@cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz'
 
 devDependencies:
   '@mdi/js': 7.4.47
@@ -1473,3 +1475,11 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  '@cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz':
+    resolution: {tarball: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz}
+    name: xlsx
+    version: 0.20.3
+    engines: {node: '>=0.8'}
+    hasBin: true
+    dev: false
