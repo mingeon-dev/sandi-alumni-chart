@@ -22,6 +22,7 @@ export const FIELD_NAME = {
 }
 
 const TITLES = {
+  [FIELD_NAME.ID]: 'ID',
   [FIELD_NAME.YEAR_OF_ADMISSION]: '학번',
   [FIELD_NAME.MAJOR]: '학사 전공',
   [FIELD_NAME.DEGREE]: '학위',

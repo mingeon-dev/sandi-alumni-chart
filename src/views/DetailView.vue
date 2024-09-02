@@ -8,12 +8,7 @@ const route = useRoute()
 
 const item = computed(() => getDataByFilter(FIELD_NAME.ID, route.query.id)[0])
 
-const detail = computed(() =>
-  getDetailByFieldNames(
-    item.value,
-    Object.values(FIELD_NAME).filter((fieldName) => fieldName !== FIELD_NAME.ID)
-  )
-)
+const detail = computed(() => getDetailByFieldNames(item.value, Object.values(FIELD_NAME)))
 </script>
 
 <template>
