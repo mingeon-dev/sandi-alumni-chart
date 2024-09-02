@@ -9,27 +9,43 @@ const route = useRoute()
 const FIRST_PATH = { title: '돌쇠 졸업생 현황', href: './', disabled: false }
 const SECOND_PATH = { title: '전체', href: './list', disabled: false }
 
-const routes = ref([])
+const routes = ref([FIRST_PATH])
 
-const showInfo = computed(() => route.name === 'home')
+const showInfo = computed(() => route.name === 'home' && !route.query?.title)
 
 watch(route, () => {
-  const { title, value, id } = route.query
-  routes.value = [
-    FIRST_PATH,
-    ...(title && value
-      ? [
-          {
-            title: `[${getTitle(title)}] ${value}`,
-            href: `./list?title=${title}&value=${value}`,
-            disabled: false
-          }
-        ]
-      : route.name !== 'home'
-        ? [SECOND_PATH]
-        : []),
-    ...(id ? ['?'] : [])
-  ]
+  const { title, value, title2, value2 } = route.query
+  if (route.name === 'home') {
+    routes.value = [FIRST_PATH]
+  }
+  if (route.name === 'list') {
+    routes.value = [FIRST_PATH, SECOND_PATH]
+  }
+  if (title && value) {
+    routes.value = [
+      FIRST_PATH,
+      {
+        title: `[${getTitle(title)}] ${value}`,
+        href: `./?title=${title}&value=${value}`,
+        disabled: false
+      }
+    ]
+  }
+  if (title2 && value2) {
+    routes.value = [
+      FIRST_PATH,
+      {
+        title: `[${getTitle(title)}] ${value}`,
+        href: `./?title=${title}&value=${value}`,
+        disabled: false
+      },
+      {
+        title: title === title2 ? '전체' : `[${getTitle(title2)}] ${value2}`,
+        href: `./list?title=${title}&value=${value}&title2=${title2}&value2=${value2}`,
+        disabled: false
+      }
+    ]
+  }
 })
 </script>
 

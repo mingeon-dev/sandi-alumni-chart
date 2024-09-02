@@ -1,7 +1,8 @@
 <script setup>
 defineProps({
   title: String,
-  values: Array
+  values: Array,
+  hide: Boolean
 })
 
 const sortingValue = defineModel()
@@ -11,6 +12,7 @@ const sortingValue = defineModel()
   <div class="card-title">
     <span class="card-title-label">{{ title }}</span>
     <v-btn-toggle
+      v-if="!hide"
       v-model="sortingValue"
       class="card-title-toggle"
       density="compact"

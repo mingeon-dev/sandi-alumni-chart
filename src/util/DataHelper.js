@@ -55,18 +55,20 @@ export const getDetailByFieldNames = (item, fieldNames) =>
     value: getValue(item, fieldName)
   }))
 
-export const getDataByFilter = (path, value) => {
+export const getDataByFilter = (path, value, _data) => {
   if (!path) return data
+  const d = _data || data
   const keyArray = path.split('.')
   return keyArray.length === 2
-    ? data.filter((item) => item[keyArray[0]] && item[keyArray[0]][keyArray[1]]?.includes(value))
-    : data.filter((item) => item[keyArray[0]].includes(value))
+    ? d.filter((item) => item[keyArray[0]] && item[keyArray[0]][keyArray[1]]?.includes(value))
+    : d.filter((item) => item[keyArray[0]].includes(value))
 }
 
-export const calcStatistics = (path) => {
+export const calcStatistics = (path, _data) => {
+  const d = _data || data
   const keyArray = path.split('.')
   const filteredData =
-    keyArray.length === 2 ? data.map((item) => item[keyArray[0]]).filter((item) => item) : data
+    keyArray.length === 2 ? d.map((item) => item[keyArray[0]]).filter((item) => item) : d
   const key = keyArray[keyArray.length - 1]
   return filteredData.reduce((accumulator, currentValue) => {
     const values = currentValue[key]?.split(', ') ?? []

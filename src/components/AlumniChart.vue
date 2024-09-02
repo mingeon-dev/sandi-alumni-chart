@@ -4,8 +4,11 @@ import { mdiInformation } from '@mdi/js'
 import PieChart from './chart/PieChart.vue'
 import HorizontalBarChart from './chart/HorizontalBarChart.vue'
 import SortingToggle from './SortingToggle.vue'
-import { FIELD_NAME, getTitle, calcStatistics } from '@/util/DataHelper'
+import { FIELD_NAME, getTitle, calcStatistics, getDataByFilter } from '@/util/DataHelper'
 import { isMobile } from '@/util/MediaQuery'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const pieUnits = ref([
   { value: 'percent', text: '%' },
@@ -22,7 +25,22 @@ const sortingCompanyName = ref('label')
 const sortingTaskGroup = ref('label')
 const sortingSubjects = ref('label')
 
-const subjects = computed(() => calcStatistics(FIELD_NAME.SUBJECTS))
+const dataByRoute = computed(() => {
+  const { title, value } = route.query
+  return title && value ? getDataByFilter(title, value) : null
+})
+
+const masterUniversity = computed(() =>
+  calcStatistics(FIELD_NAME.MASTER_UNIVERSITY, dataByRoute.value)
+)
+
+const hasMasterUniversity = computed(() => Object.keys(masterUniversity.value).length > 0)
+
+const phDUniversity = computed(() => calcStatistics(FIELD_NAME.PH_D_UNIVERSITY, dataByRoute.value))
+
+const hasPhDUniversity = computed(() => Object.keys(phDUniversity.value).length > 0)
+
+const subjects = computed(() => calcStatistics(FIELD_NAME.SUBJECTS, dataByRoute.value))
 
 const sortedSubjects = computed(() =>
   Object.entries(subjects.value)
@@ -54,7 +72,7 @@ const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.val
 <template>
   <div class="info-area">
     <v-icon class="info-icon" color="#9E9E9E" :icon="mdiInformation"></v-icon>
-    <span class="info-label">차트를 클릭하면 항목별 리스트를 볼 수 있어요.</span>
+    <span class="info-label">차트를 클릭하면 항목별 데이터를 볼 수 있어요.</span>
     <v-btn
       v-if="!isMobile"
       class="button"
@@ -79,7 +97,7 @@ const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.val
       </template>
       <PieChart
         :field="FIELD_NAME.DEGREE"
-        :data="calcStatistics(FIELD_NAME.DEGREE)"
+        :data="calcStatistics(FIELD_NAME.DEGREE, dataByRoute)"
         :unit="unitDegree"
       ></PieChart>
     </v-card>
@@ -90,13 +108,16 @@ const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.val
           class="card-title-toggle"
           :title="getTitle(FIELD_NAME.MASTER_UNIVERSITY)"
           :values="pieUnits"
+          :hide="!hasMasterUniversity"
         ></SortingToggle>
       </template>
       <PieChart
+        v-if="hasMasterUniversity"
         :field="FIELD_NAME.MASTER_UNIVERSITY"
-        :data="calcStatistics(FIELD_NAME.MASTER_UNIVERSITY)"
+        :data="masterUniversity"
         :unit="unitMaster"
       ></PieChart>
+      <div class="empty" v-else>데이터가 없어요</div>
     </v-card>
     <v-card class="card" elevation="16">
       <template v-slot:title>
@@ -105,13 +126,16 @@ const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.val
           class="card-title-toggle"
           :title="getTitle(FIELD_NAME.PH_D_UNIVERSITY)"
           :values="pieUnits"
+          :hide="!hasPhDUniversity"
         ></SortingToggle>
       </template>
       <PieChart
+        v-if="hasPhDUniversity"
         :field="FIELD_NAME.PH_D_UNIVERSITY"
-        :data="calcStatistics(FIELD_NAME.PH_D_UNIVERSITY)"
+        :data="phDUniversity"
         :unit="unitPhd"
       ></PieChart>
+      <div class="empty" v-else>데이터가 없어요</div>
     </v-card>
     <v-card class="card bar" elevation="16">
       <template v-slot:title>
@@ -124,7 +148,7 @@ const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.val
       </template>
       <HorizontalBarChart
         :field="FIELD_NAME.COMPANY_NAME"
-        :data="calcStatistics(FIELD_NAME.COMPANY_NAME)"
+        :data="calcStatistics(FIELD_NAME.COMPANY_NAME, dataByRoute)"
         :sorting-value="sortingCompanyName"
       ></HorizontalBarChart>
     </v-card>
@@ -139,14 +163,14 @@ const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.val
       </template>
       <HorizontalBarChart
         :field="FIELD_NAME.COMPANY_TASK_GROUP"
-        :data="calcStatistics(FIELD_NAME.COMPANY_TASK_GROUP)"
+        :data="calcStatistics(FIELD_NAME.COMPANY_TASK_GROUP, dataByRoute)"
         :sorting-value="sortingTaskGroup"
       ></HorizontalBarChart>
     </v-card>
     <v-card class="card bar" :title="getTitle(FIELD_NAME.YEAR_OF_ADMISSION)" elevation="16">
       <HorizontalBarChart
         :field="FIELD_NAME.YEAR_OF_ADMISSION"
-        :data="calcStatistics(FIELD_NAME.YEAR_OF_ADMISSION)"
+        :data="calcStatistics(FIELD_NAME.YEAR_OF_ADMISSION, dataByRoute)"
       ></HorizontalBarChart>
     </v-card>
     <v-card v-if="isMobile" class="card bar" elevation="16">
@@ -237,6 +261,13 @@ const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.val
   height: 716px;
 }
 
+.empty {
+  height: 444px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media only screen and (max-width: 600px) {
   .info-area {
     margin: 0 auto 2rem;
@@ -256,6 +287,10 @@ const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.val
     width: 350px;
     height: auto;
     margin: 0 auto 2rem;
+  }
+
+  .empty {
+    height: 100px;
   }
 }
 </style>

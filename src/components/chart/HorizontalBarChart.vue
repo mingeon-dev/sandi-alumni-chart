@@ -2,8 +2,9 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { Chart } from 'chart.js/auto'
 import { isMobile } from '@/util/MediaQuery'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
+const route = useRoute()
 const router = useRouter()
 
 const props = defineProps({
@@ -31,7 +32,7 @@ const data = computed(() => {
     : props.data
   return {
     labels: Object.keys(sortedData),
-    datasets: [{ data: Object.values(sortedData) }]
+    datasets: [{ data: Object.values(sortedData), maxBarThickness: 20 }]
   }
 })
 
@@ -39,6 +40,14 @@ watch(data, () => {
   chart.data = data.value
   chart.update()
 })
+
+watch(
+  () => props.maxScale,
+  () => {
+    chart.options.scales.x.max = props.maxScale
+    chart.update()
+  }
+)
 
 onMounted(() => {
   createChart()
@@ -58,10 +67,20 @@ const createChart = () => {
       },
       onClick: (event, elements, chart) => {
         if (elements[0]) {
-          router.push({
-            path: '/list',
-            query: { title: props.field, value: chart.data.labels[elements[0].index] }
-          })
+          const routes = route.query?.title
+            ? {
+                path: '/list',
+                query: {
+                  ...route.query,
+                  title2: props.field,
+                  value2: chart.data.labels[elements[0].index]
+                }
+              }
+            : {
+                path: '/',
+                query: { title: props.field, value: chart.data.labels[elements[0].index] }
+              }
+          router.push(routes)
         }
       },
       plugins: {
@@ -79,9 +98,9 @@ const createChart = () => {
       scales: {
         x: {
           ticks: {
-            callback: (value) => `${value}명`
+            callback: (value) => (Number.isInteger(value) ? `${value}명` : '')
           },
-          ...(props.maxScale ? { max: 40 } : {})
+          ...(props.maxScale ? { max: props.maxScale } : {})
         },
         y: {
           ticks: {

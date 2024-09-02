@@ -40,8 +40,11 @@ onMounted(() => {
 })
 
 const initDataByQuery = () => {
-  const { title, value } = route.query
-  filteredData.value = getDataByFilter(title, value)
+  const { title, value, title2, value2 } = route.query
+  filteredData.value = getDataByFilter(title2, value2, getDataByFilter(title, value))
+  if (filteredData.value.length === 1) {
+    router.replace({ path: '/detail', query: { ...route.query, id: filteredData.value[0].id } })
+  }
 }
 
 const getDetail = (item) =>
