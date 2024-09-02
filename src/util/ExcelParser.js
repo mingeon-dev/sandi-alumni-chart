@@ -12,6 +12,8 @@ const toIdString = (timestamp) => {
   return `${YYYY}${MM}${DD}${hh}${mm}${ss}`
 }
 
+const toSubjectArray = (subjectString) => subjectString?.split(', ') ?? []
+
 const toJSON = () =>
   raw
     .map((item) => ({
@@ -37,24 +39,34 @@ const toJSON = () =>
         taskGroup: item['현직 업무 직군 선택'],
         previous: item['이전 근무 회사 이력 (선택)']
       },
-      subjects: {
-        electronicEngineering1:
-          item['현직 업무 분야와 관련있는 전자공학 학사 과정 전공기초 과목을 모두 선택 해주세요.'],
-        computerEngineering1:
-          item[
-            '현직 업무 분야와 관련있는 컴퓨터공학 학사 과정 전공기초 과목을 모두 선택 해주세요.'
-          ],
-        electronicEngineering2:
-          item['현직 업무 분야와 관련있는 전자공학 학사 과정 전공필수 과목을 모두 선택 해주세요.'],
-        computerEngineering2:
-          item[
-            '현직 업무 분야와 관련있는 컴퓨터공학 학사 과정 전공필수 과목을 모두 선택 해주세요.'
-          ],
-        electronicEngineering3:
-          item['현직 업무 분야와 관련있는 전자공학 학사 과정 전공선택 과목을 모두 선택 해주세요.'],
-        computerEngineering3:
-          item['현직 업무 분야와 관련있는 컴퓨터공학 학사 과정 전공선택 과목을 모두 선택 해주세요.']
-      }
+      subjects: [
+        ...new Set([
+          ...toSubjectArray(
+            item['현직 업무 분야와 관련있는 전자공학 학사 과정 전공기초 과목을 모두 선택 해주세요.']
+          ),
+          ...toSubjectArray(
+            item[
+              '현직 업무 분야와 관련있는 컴퓨터공학 학사 과정 전공기초 과목을 모두 선택 해주세요.'
+            ]
+          ),
+          ...toSubjectArray(
+            item['현직 업무 분야와 관련있는 전자공학 학사 과정 전공필수 과목을 모두 선택 해주세요.']
+          ),
+          ...toSubjectArray(
+            item[
+              '현직 업무 분야와 관련있는 컴퓨터공학 학사 과정 전공필수 과목을 모두 선택 해주세요.'
+            ]
+          ),
+          ...toSubjectArray(
+            item['현직 업무 분야와 관련있는 전자공학 학사 과정 전공선택 과목을 모두 선택 해주세요.']
+          ),
+          ...toSubjectArray(
+            item[
+              '현직 업무 분야와 관련있는 컴퓨터공학 학사 과정 전공선택 과목을 모두 선택 해주세요.'
+            ]
+          )
+        ])
+      ].join(', ')
     }))
     .map((item) => ({
       ...item,

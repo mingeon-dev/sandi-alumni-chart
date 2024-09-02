@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { mdiInformation } from '@mdi/js'
 import PieChart from './chart/PieChart.vue'
 import HorizontalBarChart from './chart/HorizontalBarChart.vue'
@@ -20,6 +20,35 @@ const barSortingValues = ref([
 ])
 const sortingCompanyName = ref('label')
 const sortingTaskGroup = ref('label')
+const sortingSubjects = ref('label')
+
+const subjects = computed(() => calcStatistics(FIELD_NAME.SUBJECTS))
+
+const sortedSubjects = computed(() =>
+  Object.entries(subjects.value)
+    .sort(([label1, data1], [label2, data2]) => {
+      if (sortingSubjects.value === 'label') {
+        return label1 > label2 ? 1 : -1
+      } else {
+        return data2 - data1
+      }
+    })
+    .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
+)
+
+const subjectData = computed(() => {
+  const DIVISOR = 3
+  const length = Math.floor(Object.keys(sortedSubjects.value).length / DIVISOR)
+  let index = 0
+  return Object.entries(sortedSubjects.value).reduce((r, [k, v]) => {
+    if (!r[index]) r[index] = {}
+    r[index][k] = v
+    if (Object.keys(r[index]).length >= length && index !== DIVISOR - 1) index++
+    return r
+  }, [])
+})
+
+const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.value)) / 10) * 10)
 </script>
 
 <template>
@@ -120,6 +149,52 @@ const sortingTaskGroup = ref('label')
         :data="calcStatistics(FIELD_NAME.YEAR_OF_ADMISSION)"
       ></HorizontalBarChart>
     </v-card>
+    <v-card v-if="isMobile" class="card bar" elevation="16">
+      <template v-slot:title>
+        <SortingToggle
+          v-model="sortingSubjects"
+          class="card-title-toggle"
+          :title="getTitle(FIELD_NAME.SUBJECTS)"
+          :values="barSortingValues"
+        ></SortingToggle>
+      </template>
+      <HorizontalBarChart
+        :field="FIELD_NAME.SUBJECTS"
+        :data="sortedSubjects"
+        :aspect-ratio="0.2"
+      ></HorizontalBarChart>
+    </v-card>
+    <template v-else>
+      <v-card class="card bar" elevation="16">
+        <template v-slot:title>
+          <SortingToggle
+            v-model="sortingSubjects"
+            class="card-title-toggle"
+            :title="`${getTitle(FIELD_NAME.SUBJECTS)} (1)`"
+            :values="barSortingValues"
+          ></SortingToggle>
+        </template>
+        <HorizontalBarChart
+          :field="FIELD_NAME.SUBJECTS"
+          :data="subjectData[0]"
+          :max-scale="maxScale"
+        ></HorizontalBarChart>
+      </v-card>
+      <v-card class="card bar" :title="`${getTitle(FIELD_NAME.SUBJECTS)} (2)`" elevation="16">
+        <HorizontalBarChart
+          :field="FIELD_NAME.SUBJECTS"
+          :data="subjectData[1]"
+          :max-scale="maxScale"
+        ></HorizontalBarChart>
+      </v-card>
+      <v-card class="card bar" :title="`${getTitle(FIELD_NAME.SUBJECTS)} (3)`" elevation="16">
+        <HorizontalBarChart
+          :field="FIELD_NAME.SUBJECTS"
+          :data="subjectData[2]"
+          :max-scale="maxScale"
+        ></HorizontalBarChart>
+      </v-card>
+    </template>
   </div>
 </template>
 

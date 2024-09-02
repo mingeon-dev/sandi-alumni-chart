@@ -18,12 +18,7 @@ export const FIELD_NAME = {
   COMPANY_TASK: 'company.task',
   COMPANY_TASK_GROUP: 'company.taskGroup',
   COMPANY_PREVIOUS: 'company.previous',
-  SUBJECTS_ELECTRONIC_ENGINEERING_1: 'subjects.electronicEngineering1',
-  SUBJECTS_ELECTRONIC_ENGINEERING_2: 'subjects.electronicEngineering2',
-  SUBJECTS_ELECTRONIC_ENGINEERING_3: 'subjects.electronicEngineering3',
-  SUBJECTS_COMPUTER_ENGINEERING_1: 'subjects.computerEngineering1',
-  SUBJECTS_COMPUTER_ENGINEERING_2: 'subjects.computerEngineering2',
-  SUBJECTS_COMPUTER_ENGINEERING_3: 'subjects.computerEngineering3'
+  SUBJECTS: 'subjects'
 }
 
 const TITLES = {
@@ -43,12 +38,7 @@ const TITLES = {
   [FIELD_NAME.COMPANY_TASK]: '담당 업무',
   [FIELD_NAME.COMPANY_TASK_GROUP]: '업무 직군',
   [FIELD_NAME.COMPANY_PREVIOUS]: '이전 근무 이력',
-  [FIELD_NAME.SUBJECTS_ELECTRONIC_ENGINEERING_1]: '업무 관련 전자공학 전공기초 과목',
-  [FIELD_NAME.SUBJECTS_ELECTRONIC_ENGINEERING_2]: '업무 관련 전자공학 전공필수 과목',
-  [FIELD_NAME.SUBJECTS_ELECTRONIC_ENGINEERING_3]: '업무 관련 전자공학 전공선택 과목',
-  [FIELD_NAME.SUBJECTS_COMPUTER_ENGINEERING_1]: '업무 관련 컴퓨터공학 전공기초 과목',
-  [FIELD_NAME.SUBJECTS_COMPUTER_ENGINEERING_2]: '업무 관련 컴퓨터공학 전공필수 과목',
-  [FIELD_NAME.SUBJECTS_COMPUTER_ENGINEERING_3]: '업무 관련 컴퓨터공학 전공선택 과목'
+  [FIELD_NAME.SUBJECTS]: '업무 관련 과목'
 }
 
 export const getTitle = (key) => TITLES[key] || ''
@@ -79,10 +69,12 @@ export const calcStatistics = (path) => {
   const key = keyArray[keyArray.length - 1]
   return filteredData.reduce((accumulator, currentValue) => {
     const values = currentValue[key]?.split(', ') ?? []
-    values.forEach((value) => {
-      if (!accumulator[value]) accumulator[value] = 0
-      accumulator[value]++
-    })
+    values
+      .filter((value) => value !== '')
+      .forEach((value) => {
+        if (!accumulator[value]) accumulator[value] = 0
+        accumulator[value]++
+      })
     return accumulator
   }, {})
 }

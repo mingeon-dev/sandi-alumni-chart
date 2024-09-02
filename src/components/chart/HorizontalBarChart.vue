@@ -9,22 +9,26 @@ const router = useRouter()
 const props = defineProps({
   field: String,
   data: Object,
-  sortingValue: String
+  sortingValue: String,
+  maxScale: Number,
+  aspectRatio: Number
 })
 
 const canvas = ref()
 let chart = null
 
 const data = computed(() => {
-  const sortedData = Object.entries(props.data)
-    .sort(([label1, data1], [label2, data2]) => {
-      if (props.sortingValue === 'label') {
-        return label1 > label2 ? 1 : -1
-      } else {
-        return data2 - data1
-      }
-    })
-    .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
+  const sortedData = props.sortingValue
+    ? Object.entries(props.data)
+        .sort(([label1, data1], [label2, data2]) => {
+          if (props.sortingValue === 'label') {
+            return label1 > label2 ? 1 : -1
+          } else {
+            return data2 - data1
+          }
+        })
+        .reduce((r, [k, v]) => ({ ...r, [k]: v }), {})
+    : props.data
   return {
     labels: Object.keys(sortedData),
     datasets: [{ data: Object.values(sortedData) }]
@@ -76,7 +80,8 @@ const createChart = () => {
         x: {
           ticks: {
             callback: (value) => `${value}명`
-          }
+          },
+          ...(props.maxScale ? { max: 40 } : {})
         },
         y: {
           ticks: {
@@ -85,7 +90,7 @@ const createChart = () => {
           }
         }
       },
-      aspectRatio: isMobile ? 0.5 : 0.6
+      aspectRatio: props.aspectRatio ? props.aspectRatio : isMobile ? 0.5 : 0.6
     }
   })
 }
