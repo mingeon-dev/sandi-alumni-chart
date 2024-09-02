@@ -30,6 +30,8 @@ const dataByRoute = computed(() => {
   return title && value ? getDataByFilter(title, value) : null
 })
 
+const degree = computed(() => calcStatistics(FIELD_NAME.DEGREE, dataByRoute.value))
+
 const masterUniversity = computed(() =>
   calcStatistics(FIELD_NAME.MASTER_UNIVERSITY, dataByRoute.value)
 )
@@ -95,11 +97,7 @@ const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.val
           :values="pieUnits"
         ></SortingToggle>
       </template>
-      <PieChart
-        :field="FIELD_NAME.DEGREE"
-        :data="calcStatistics(FIELD_NAME.DEGREE, dataByRoute)"
-        :unit="unitDegree"
-      ></PieChart>
+      <PieChart :field="FIELD_NAME.DEGREE" :data="degree" :unit="unitDegree"></PieChart>
     </v-card>
     <v-card class="card" elevation="16">
       <template v-slot:title>
