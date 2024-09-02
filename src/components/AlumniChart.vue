@@ -1,14 +1,15 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { mdiInformation } from '@mdi/js'
 import PieChart from './chart/PieChart.vue'
 import HorizontalBarChart from './chart/HorizontalBarChart.vue'
 import SortingToggle from './SortingToggle.vue'
 import { FIELD_NAME, getTitle, calcStatistics, getDataByFilter } from '@/util/DataHelper'
 import { isMobile } from '@/util/MediaQuery'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 
 const pieUnits = ref([
   { value: 'percent', text: '%' },
@@ -57,6 +58,7 @@ const sortedSubjects = computed(() =>
 )
 
 const subjectData = computed(() => {
+  if (Object.keys(sortedSubjects.value).length === 0) return [{}, {}, {}]
   const DIVISOR = 3
   const length = Math.floor(Object.keys(sortedSubjects.value).length / DIVISOR)
   let index = 0
@@ -69,6 +71,18 @@ const subjectData = computed(() => {
 })
 
 const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.value)) / 10) * 10)
+
+watch(route, () => {
+  initDataByQuery()
+})
+
+const initDataByQuery = () => {
+  const { title, value } = route.query
+  const data = getDataByFilter(title, value)
+  if (data.length === 1) {
+    router.replace({ path: '/detail', query: { ...route.query, id: data[0].id } })
+  }
+}
 </script>
 
 <template>

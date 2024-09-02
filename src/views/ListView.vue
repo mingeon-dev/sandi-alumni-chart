@@ -62,7 +62,7 @@ const handleRowClick = (event, { item }) => {
 }
 </script>
 
-<template>
+<template v-if="filteredData.length > 0">
   <template v-if="isMobile">
     <v-data-iterator :items="filteredData" :items-per-page="-1">
       <template v-slot:default="{ items }">
