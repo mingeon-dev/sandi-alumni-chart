@@ -85,6 +85,13 @@ const createChart = () => {
         },
         y: {
           ticks: {
+            callback: function (value) {
+              const maxLength = 15
+              const label = this.getLabelForValue(value)
+              return typeof label === 'string' && label.length > maxLength
+                ? `${label.substring(0, maxLength)}...`
+                : label
+            },
             autoSkip: false,
             stepSize: 1
           }
