@@ -60,7 +60,7 @@ const openUrl = (url) => window.open(url)
   <div class="wrapper">
     <RouterView />
   </div>
-  <v-footer class="bg-primary footer">
+  <v-footer class="bg-primary">
     <v-row justify="center" no-gutters>
       <v-btn
         variant="text"
@@ -110,7 +110,7 @@ const openUrl = (url) => window.open(url)
   }
 
   .wrapper {
-    min-height: calc(100vh - 161.5px);
+    min-height: auto;
   }
 }
 </style>
