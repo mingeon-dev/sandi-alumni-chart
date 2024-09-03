@@ -1,5 +1,6 @@
 <script setup>
 import { computed, watch, ref } from 'vue'
+import { mdiAccountPlus, mdiOpenInNew } from '@mdi/js'
 import { RouterView } from 'vue-router'
 import { useRoute } from 'vue-router'
 import { getTitle } from './util/DataHelper'
@@ -47,6 +48,8 @@ watch(route, () => {
     ]
   }
 })
+
+const openUrl = (url) => window.open(url)
 </script>
 
 <template>
@@ -54,7 +57,25 @@ watch(route, () => {
     <v-breadcrumbs class="title" :items="routes"></v-breadcrumbs>
     <p v-if="showInfo" class="header-info">업데이트: 2024년 8월 27일</p>
   </div>
-  <RouterView />
+  <div class="wrapper">
+    <RouterView />
+  </div>
+  <v-footer class="bg-primary footer">
+    <v-row justify="center" no-gutters>
+      <v-btn
+        variant="text"
+        :append-icon="mdiAccountPlus"
+        @click="openUrl('http://pf.kakao.com/_xoEvxlG')"
+        >멘토링 문의: 경희돌쇠 채널</v-btn
+      >
+      <v-btn
+        variant="text"
+        :append-icon="mdiOpenInNew"
+        @click="openUrl('https://forms.gle/SniJArRjJegSDnP67')"
+        >졸업생 정보 등록 구글폼</v-btn
+      >
+    </v-row>
+  </v-footer>
 </template>
 
 <style scoped>
@@ -72,8 +93,11 @@ watch(route, () => {
   font-size: 14px;
   color: #9e9e9e;
   text-align: right;
-  /* margin: 1rem 1rem 0; */
   margin: 2rem 2rem 0 auto;
+}
+
+.wrapper {
+  min-height: calc(100vh - 141.5px);
 }
 
 @media only screen and (max-width: 600px) {
@@ -83,6 +107,10 @@ watch(route, () => {
 
   .header-info {
     margin: 1rem 5px 2rem auto;
+  }
+
+  .wrapper {
+    min-height: calc(100vh - 161.5px);
   }
 }
 </style>
