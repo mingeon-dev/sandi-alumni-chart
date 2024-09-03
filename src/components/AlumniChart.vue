@@ -188,7 +188,11 @@ watch(hasOnlyOne, () => {
           :values="barSortingValues"
         ></SortingToggle>
       </template>
-      <HorizontalBarChart :field="FIELD_NAME.SUBJECTS" :data="sortedSubjects"></HorizontalBarChart>
+      <HorizontalBarChart
+        :field="FIELD_NAME.SUBJECTS"
+        :data="sortedSubjects"
+        :aspect-ratio="0.2"
+      ></HorizontalBarChart>
     </v-card>
     <template v-else>
       <v-card class="card bar" elevation="16">
