@@ -11,8 +11,7 @@ const props = defineProps({
   field: String,
   data: Object,
   sortingValue: String,
-  maxScale: Number,
-  aspectRatio: Number
+  maxScale: Number
 })
 
 const canvas = ref()
@@ -36,9 +35,18 @@ const data = computed(() => {
   }
 })
 
+const aspectRatio = computed(() => {
+  const dataLength = data.value.labels.length
+  return Math.min(1, 15 / dataLength)
+})
+
 watch(data, () => {
   chart.data = data.value
   chart.update()
+  if (isMobile) {
+    chart.options.aspectRatio = aspectRatio.value
+    chart.resize()
+  }
 })
 
 watch(
@@ -116,7 +124,7 @@ const createChart = () => {
           }
         }
       },
-      aspectRatio: props.aspectRatio ? props.aspectRatio : isMobile ? 0.5 : 0.6
+      aspectRatio: isMobile ? aspectRatio.value : 0.6
     }
   })
 }
