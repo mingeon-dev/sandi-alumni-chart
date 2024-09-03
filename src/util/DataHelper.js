@@ -82,5 +82,7 @@ export const calcStatistics = (path, _data) => {
   }, {})
 }
 
+export const getTotalDataLength = () => data.length
+
 export const getTitleForMobile = (title) =>
   title.replace('관련 ', '관련\n').replace('공학 ', '공학\n')

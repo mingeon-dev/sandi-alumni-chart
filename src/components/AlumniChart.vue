@@ -4,11 +4,18 @@ import { mdiInformation } from '@mdi/js'
 import PieChart from './chart/PieChart.vue'
 import HorizontalBarChart from './chart/HorizontalBarChart.vue'
 import SortingToggle from './SortingToggle.vue'
-import { FIELD_NAME, getTitle, calcStatistics, getDataByFilter } from '@/util/DataHelper'
+import {
+  FIELD_NAME,
+  getTitle,
+  calcStatistics,
+  getDataByFilter,
+  getTotalDataLength
+} from '@/util/DataHelper'
 import { isMobile } from '@/util/MediaQuery'
-import { useRoute, onBeforeRouteUpdate } from 'vue-router'
+import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 
 const pieUnits = ref([
   { value: 'percent', text: '%' },
@@ -24,6 +31,16 @@ const barSortingValues = ref([
 const sortingCompanyName = ref('label')
 const sortingTaskGroup = ref('label')
 const sortingSubjects = ref('label')
+
+const title = computed(() =>
+  route.query.title
+    ? '차트의 개별 항목을 클릭하면 리스트 페이지를 보여줘요.'
+    : '차트의 개별 항목을 클릭하면 해당 항목의 리스트로 차트 페이지를 다시 보여줘요.'
+)
+
+const currentDataLength = computed(() => dataByRoute.value?.length ?? getTotalDataLength())
+
+const textAll = computed(() => `전체 리스트 보기 (${currentDataLength.value})`)
 
 const dataByRoute = computed(() => {
   const { title, value } = route.query
@@ -78,24 +95,25 @@ onBeforeRouteUpdate((to) => {
     return { path: '/detail', query: { ...to.query, id: data[0].id } }
   }
 })
+
+const routeList = () => {
+  router.push({ path: '/list', query: { ...route.query } })
+}
 </script>
 
 <template>
   <div class="info-area">
-    <v-icon class="info-icon" color="#9E9E9E" :icon="mdiInformation"></v-icon>
-    <span class="info-label">차트를 클릭하면 항목별 데이터를 볼 수 있어요.</span>
-    <v-btn
-      v-if="!isMobile"
-      class="button"
-      color="primary"
-      density="compact"
-      @click="$router.push('/list')"
-      >전체 리스트 보기</v-btn
-    >
+    <div class="info-wrapper">
+      <v-icon class="info-icon" color="#9E9E9E" :icon="mdiInformation"></v-icon>
+      <span class="info-label">{{ title }}</span>
+    </div>
+    <v-btn v-if="!isMobile" class="button" color="primary" density="compact" @click="routeList">{{
+      textAll
+    }}</v-btn>
   </div>
-  <v-btn v-if="isMobile" class="button-mobile" elevation="4" @click="$router.push('/list')"
-    >전체 리스트 보기</v-btn
-  >
+  <v-btn v-if="isMobile" class="button-mobile" elevation="4" @click="routeList">{{
+    textAll
+  }}</v-btn>
   <div class="container">
     <v-card class="card" elevation="16">
       <template v-slot:title>
@@ -228,15 +246,24 @@ onBeforeRouteUpdate((to) => {
 <style scoped>
 .info-area {
   margin: 2rem;
+  display: flex;
+}
+
+.info-wrapper {
+  display: table;
+  margin: 0 5px;
 }
 
 .info-icon {
-  margin: 0 5px;
-  vertical-align: bottom;
+  display: table-cell;
+  vertical-align: top;
 }
 
 .info-label {
   color: #9e9e9e;
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 5px;
 }
 
 .button {
