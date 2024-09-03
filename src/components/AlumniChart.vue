@@ -31,6 +31,8 @@ const dataByRoute = computed(() => {
   return title && value ? getDataByFilter(title, value) : null
 })
 
+const hasOnlyOne = computed(() => dataByRoute.value?.length === 1)
+
 const degree = computed(() => calcStatistics(FIELD_NAME.DEGREE, dataByRoute.value))
 
 const masterUniversity = computed(() =>
@@ -72,17 +74,9 @@ const subjectData = computed(() => {
 
 const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.value)) / 10) * 10)
 
-watch(route, () => {
-  initDataByQuery()
+watch(hasOnlyOne, () => {
+  router.replace({ path: '/detail', query: { ...route.query, id: dataByRoute.value[0].id } })
 })
-
-const initDataByQuery = () => {
-  const { title, value } = route.query
-  const data = getDataByFilter(title, value)
-  if (data.length === 1) {
-    router.replace({ path: '/detail', query: { ...route.query, id: data[0].id } })
-  }
-}
 </script>
 
 <template>
@@ -101,7 +95,7 @@ const initDataByQuery = () => {
   <v-btn v-if="isMobile" class="button-mobile" elevation="4" @click="$router.push('/list')"
     >전체 리스트 보기</v-btn
   >
-  <div class="container">
+  <div v-if="!hasOnlyOne" class="container">
     <v-card class="card" elevation="16">
       <template v-slot:title>
         <SortingToggle
@@ -194,11 +188,7 @@ const initDataByQuery = () => {
           :values="barSortingValues"
         ></SortingToggle>
       </template>
-      <HorizontalBarChart
-        :field="FIELD_NAME.SUBJECTS"
-        :data="sortedSubjects"
-        :aspect-ratio="0.2"
-      ></HorizontalBarChart>
+      <HorizontalBarChart :field="FIELD_NAME.SUBJECTS" :data="sortedSubjects"></HorizontalBarChart>
     </v-card>
     <template v-else>
       <v-card class="card bar" elevation="16">
