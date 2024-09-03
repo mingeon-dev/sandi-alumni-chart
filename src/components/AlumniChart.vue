@@ -97,7 +97,7 @@ onBeforeRouteUpdate((to) => {
 })
 
 const routeList = () => {
-  router.push({ path: '/list', query: { ...route.query } })
+  router.push({ path: '/list', query: route.query })
 }
 </script>
 

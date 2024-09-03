@@ -56,8 +56,8 @@ export const getDetailByFieldNames = (item, fieldNames) =>
   }))
 
 export const getDataByFilter = (path, value, _data) => {
-  if (!path) return data
   const d = _data || data
+  if (!path) return d
   const keyArray = path.split('.')
   return keyArray.length === 2
     ? d.filter((item) => item[keyArray[0]] && item[keyArray[0]][keyArray[1]]?.includes(value))
