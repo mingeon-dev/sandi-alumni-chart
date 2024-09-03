@@ -42,9 +42,6 @@ onMounted(() => {
 const initDataByQuery = () => {
   const { title, value, title2, value2 } = route.query
   filteredData.value = getDataByFilter(title2, value2, getDataByFilter(title, value))
-  if (filteredData.value.length === 1) {
-    router.replace({ path: '/detail', query: { ...route.query, id: filteredData.value[0].id } })
-  }
 }
 
 const getDetail = (item) =>
@@ -62,7 +59,7 @@ const handleRowClick = (event, { item }) => {
 }
 </script>
 
-<template v-if="filteredData.length > 0">
+<template>
   <template v-if="isMobile">
     <v-data-iterator :items="filteredData" :items-per-page="-1">
       <template v-slot:default="{ items }">

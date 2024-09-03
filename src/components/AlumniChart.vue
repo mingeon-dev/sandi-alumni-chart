@@ -1,15 +1,14 @@
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { mdiInformation } from '@mdi/js'
 import PieChart from './chart/PieChart.vue'
 import HorizontalBarChart from './chart/HorizontalBarChart.vue'
 import SortingToggle from './SortingToggle.vue'
 import { FIELD_NAME, getTitle, calcStatistics, getDataByFilter } from '@/util/DataHelper'
 import { isMobile } from '@/util/MediaQuery'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute, onBeforeRouteUpdate } from 'vue-router'
 
 const route = useRoute()
-const router = useRouter()
 
 const pieUnits = ref([
   { value: 'percent', text: '%' },
@@ -30,8 +29,6 @@ const dataByRoute = computed(() => {
   const { title, value } = route.query
   return title && value ? getDataByFilter(title, value) : null
 })
-
-const hasOnlyOne = computed(() => dataByRoute.value?.length === 1)
 
 const degree = computed(() => calcStatistics(FIELD_NAME.DEGREE, dataByRoute.value))
 
@@ -74,8 +71,12 @@ const subjectData = computed(() => {
 
 const maxScale = computed(() => Math.ceil(Math.max(...Object.values(subjects.value)) / 10) * 10)
 
-watch(hasOnlyOne, () => {
-  router.replace({ path: '/detail', query: { ...route.query, id: dataByRoute.value[0].id } })
+onBeforeRouteUpdate((to) => {
+  const { title, value } = to.query
+  const data = getDataByFilter(title, value)
+  if (data.length === 1) {
+    return { path: '/detail', query: { ...to.query, id: data[0].id } }
+  }
 })
 </script>
 
@@ -95,7 +96,7 @@ watch(hasOnlyOne, () => {
   <v-btn v-if="isMobile" class="button-mobile" elevation="4" @click="$router.push('/list')"
     >전체 리스트 보기</v-btn
   >
-  <div v-if="!hasOnlyOne" class="container">
+  <div class="container">
     <v-card class="card" elevation="16">
       <template v-slot:title>
         <SortingToggle
