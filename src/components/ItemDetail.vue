@@ -1,11 +1,16 @@
 <script setup>
 import { isMobile } from '@/util/MediaQuery'
-import { getTitleForMobile } from '@/util/DataHelper'
+import { mdiContentCopy } from '@mdi/js'
+import { FIELD_NAME, getTitle, getTitleForMobile } from '@/util/DataHelper'
 
 defineProps({
   data: Array,
   preLine: Boolean
 })
+
+const copy = (value) => {
+  navigator.clipboard.writeText(value)
+}
 </script>
 
 <template>
@@ -16,6 +21,13 @@ defineProps({
           <th class="table-header">{{ isMobile ? getTitleForMobile(item.title) : item.title }}</th>
           <td class="table-cell" :class="{ 'pre-line': preLine }">
             {{ isMobile && preLine ? item.value.replaceAll(', ', '\n') : item.value }}
+            <v-icon
+              v-if="item.title === getTitle(FIELD_NAME.ID)"
+              class="copy-icon"
+              color="#9E9E9E"
+              :icon="mdiContentCopy"
+              @click="copy(item.value)"
+            ></v-icon>
           </td>
         </tr>
       </template>
@@ -26,6 +38,10 @@ defineProps({
 <style scoped>
 .table-header {
   min-width: 230px;
+}
+
+.copy-icon {
+  margin-left: 10px;
 }
 
 @media only screen and (max-width: 600px) {
