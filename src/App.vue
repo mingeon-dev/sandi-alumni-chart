@@ -105,6 +105,10 @@ const openUrl = (url) => window.open(url)
     margin: 1rem 0 2rem 5px;
   }
 
+  .title:not(:has(+ .header-info)) {
+    width: 350px;
+  }
+
   .header-info {
     margin: 1rem 5px 2rem auto;
   }
