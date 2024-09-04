@@ -55,7 +55,7 @@ const openUrl = (url) => window.open(url)
 <template>
   <div class="header">
     <v-breadcrumbs class="title" :items="routes"></v-breadcrumbs>
-    <p v-if="showInfo" class="header-info">업데이트: 2024년 8월 27일</p>
+    <p v-if="showInfo" class="header-info">업데이트: 2024년 9월 4일</p>
   </div>
   <div class="wrapper">
     <RouterView />
