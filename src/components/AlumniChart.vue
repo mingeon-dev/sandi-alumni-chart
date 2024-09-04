@@ -277,18 +277,18 @@ const routeList = () => {
   justify-content: space-around;
   align-content: space-around;
   align-items: center;
-  max-width: 1130px;
+  max-width: 1320px;
   margin: 0 auto 20px;
 }
 
 .card {
-  width: 340px;
-  height: 396px;
-  margin: 10px;
+  width: 400px;
+  height: 496px;
+  margin: 20px;
 }
 
 .bar {
-  height: 618px;
+  height: 716px;
 }
 
 .empty {
