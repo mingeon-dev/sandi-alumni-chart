@@ -81,7 +81,6 @@ const openUrl = (url) => window.open(url)
 <style scoped>
 .header {
   display: flex;
-  justify-content: space-between;
 }
 
 .title {
@@ -111,7 +110,8 @@ const openUrl = (url) => window.open(url)
   }
 
   .header-info {
-    margin: 1rem 5px 2rem 0;
+    margin: 1rem 0 2rem 0;
+    line-height: 26px;
   }
 
   .wrapper {
