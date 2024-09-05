@@ -101,6 +101,10 @@ const openUrl = (url) => window.open(url)
 }
 
 @media only screen and (max-width: 600px) {
+  .header {
+    width: 100%;
+  }
+
   .title {
     margin: 1rem 0 2rem 5px;
   }
