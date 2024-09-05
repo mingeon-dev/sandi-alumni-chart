@@ -54,7 +54,11 @@ const openUrl = (url) => window.open(url)
 
 <template>
   <div class="header">
-    <v-breadcrumbs class="title" :items="routes"></v-breadcrumbs>
+    <v-breadcrumbs
+      class="title"
+      :class="{ 'without-info': !showInfo }"
+      :items="routes"
+    ></v-breadcrumbs>
     <p v-if="showInfo" class="header-info">업데이트: 2024년 9월 4일</p>
   </div>
   <div class="wrapper">
@@ -101,21 +105,16 @@ const openUrl = (url) => window.open(url)
 }
 
 @media only screen and (max-width: 600px) {
-  .header {
-    display: block;
-  }
-
   .title {
-    margin: 1rem 0 0 5px;
+    margin: 1rem 0 2rem 5px;
   }
 
-  .title:not(:has(+ .header-info)) {
+  .without-info {
     width: 350px;
-    margin-bottom: 2rem;
   }
 
   .header-info {
-    margin: 0 5px 1rem 0;
+    margin: 1rem 5px 2rem auto;
   }
 
   .wrapper {
