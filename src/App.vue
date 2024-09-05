@@ -101,17 +101,21 @@ const openUrl = (url) => window.open(url)
 }
 
 @media only screen and (max-width: 600px) {
+  .header {
+    display: block;
+  }
+
   .title {
-    margin: 1rem 0 2rem 5px;
+    margin: 1rem 0 0 5px;
   }
 
   .title:not(:has(+ .header-info)) {
     width: 350px;
+    margin-bottom: 2rem;
   }
 
   .header-info {
-    margin: 1rem 0 2rem 0;
-    line-height: 26px;
+    margin: 0 5px 1rem 0;
   }
 
   .wrapper {
