@@ -104,7 +104,7 @@ const routeList = () => {
 <template>
   <div class="info-area">
     <div class="info-wrapper">
-      <v-icon class="info-icon" color="#9E9E9E" :icon="mdiInformation"></v-icon>
+      <v-icon color="#9E9E9E" :icon="mdiInformation"></v-icon>
       <span class="info-label">{{ title }}</span>
     </div>
     <v-btn v-if="!isMobile" class="button" color="primary" density="compact" @click="routeList">{{
@@ -241,7 +241,6 @@ const routeList = () => {
       </v-card>
     </template>
   </div>
-  <v-icon class="info-icon" color="#9E9E9E" :icon="mdiInformation"></v-icon>
 </template>
 
 <style scoped>
@@ -251,19 +250,12 @@ const routeList = () => {
 }
 
 .info-wrapper {
-  display: table;
+  display: flex;
   margin: 0 5px;
-}
-
-.info-icon {
-  display: table-cell;
-  vertical-align: top;
 }
 
 .info-label {
   color: #9e9e9e;
-  display: table-cell;
-  vertical-align: top;
   padding-left: 5px;
 }
 
