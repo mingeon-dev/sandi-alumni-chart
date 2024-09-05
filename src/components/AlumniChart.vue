@@ -104,7 +104,7 @@ const routeList = () => {
 <template>
   <div class="info-area">
     <div class="info-wrapper">
-      <v-icon class="info-icon" color="#9E9E9E" :icon="mdiInformation" size="small"></v-icon>
+      <v-icon class="info-icon" color="#9E9E9E" :icon="mdiInformation"></v-icon>
       <span class="info-label">{{ title }}</span>
     </div>
     <v-btn v-if="!isMobile" class="button" color="primary" density="compact" @click="routeList">{{
