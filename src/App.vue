@@ -102,7 +102,7 @@ const openUrl = (url) => window.open(url)
 
 @media only screen and (max-width: 600px) {
   .title {
-    margin: 1rem 0 2rem 5px;
+    margin: 10px 0 20px 5px;
   }
 
   .title:not(:has(+ .header-info)) {
@@ -110,7 +110,7 @@ const openUrl = (url) => window.open(url)
   }
 
   .header-info {
-    margin: 1rem 5px 2rem auto;
+    margin: 10px 5px 20px auto;
   }
 
   .wrapper {
