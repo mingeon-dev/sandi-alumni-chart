@@ -241,6 +241,7 @@ const routeList = () => {
       </v-card>
     </template>
   </div>
+  <v-icon class="info-icon" color="#9E9E9E" :icon="mdiInformation"></v-icon>
 </template>
 
 <style scoped>
