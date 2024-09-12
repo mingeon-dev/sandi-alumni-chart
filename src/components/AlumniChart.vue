@@ -215,7 +215,7 @@ const routeList = () => {
           <SortingToggle
             v-model="sortingSubjects"
             class="card-title-toggle"
-            :title="`${getTitle(FIELD_NAME.SUBJECTS)} (1)`"
+            :title="`${getTitle(FIELD_NAME.SUBJECTS)} (계속 →)`"
             :values="barSortingValues"
           ></SortingToggle>
         </template>
@@ -225,14 +225,14 @@ const routeList = () => {
           :max-scale="maxScale"
         ></HorizontalBarChart>
       </v-card>
-      <v-card class="card bar" :title="`${getTitle(FIELD_NAME.SUBJECTS)} (2)`" elevation="16">
+      <v-card class="card bar" :title="`${getTitle(FIELD_NAME.SUBJECTS)} (계속 →)`" elevation="16">
         <HorizontalBarChart
           :field="FIELD_NAME.SUBJECTS"
           :data="subjectData[1]"
           :max-scale="maxScale"
         ></HorizontalBarChart>
       </v-card>
-      <v-card class="card bar" :title="`${getTitle(FIELD_NAME.SUBJECTS)} (3)`" elevation="16">
+      <v-card class="card bar" :title="`${getTitle(FIELD_NAME.SUBJECTS)}`" elevation="16">
         <HorizontalBarChart
           :field="FIELD_NAME.SUBJECTS"
           :data="subjectData[2]"
