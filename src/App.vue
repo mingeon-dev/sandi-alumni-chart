@@ -59,7 +59,7 @@ const openUrl = (url) => window.open(url)
       :class="{ 'without-info': !showInfo }"
       :items="routes"
     ></v-breadcrumbs>
-    <p v-if="showInfo" class="header-info">업데이트: 2024년 9월 4일</p>
+    <p v-if="showInfo" class="header-info">업데이트: 2024년 9월 12일</p>
   </div>
   <div class="wrapper">
     <RouterView />
