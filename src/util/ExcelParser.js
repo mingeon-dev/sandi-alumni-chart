@@ -1,4 +1,14 @@
-import raw from '@/assets/data.xlsx?sheetjs'
+import { reactive } from 'vue'
+import { read, utils } from 'xlsx'
+
+const GOOGLE_DRIVE_FILE_ID = '1eQD-BPRkclS1qRwtQEtxptB0YPuHKKjD'
+const DOWNLOAD_URL = `https://docs.google.com/spreadsheets/d/${GOOGLE_DRIVE_FILE_ID}/export?format=xlsx`
+
+export const dataState = reactive({
+  data: [],
+  isLoading: true,
+  error: null
+})
 
 const toIdString = (timestamp) => {
   const date = new Date(timestamp)
@@ -14,7 +24,7 @@ const toIdString = (timestamp) => {
 
 const toSubjectArray = (subjectString) => subjectString?.split(', ') ?? []
 
-const toJSON = () =>
+const transformData = (raw) =>
   raw
     .map((item) => ({
       id: toIdString(item['타임스탬프']),
@@ -77,6 +87,31 @@ const toJSON = () =>
           : { degree: '학사' })
     }))
 
-const data = toJSON()
+export const loadData = async () => {
+  dataState.isLoading = true
+  dataState.error = null
 
-export default data
+  try {
+    const response = await fetch(DOWNLOAD_URL)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.status}`)
+    }
+
+    const arrayBuffer = await response.arrayBuffer()
+    const workbook = read(arrayBuffer, {
+      type: 'array',
+      cellDates: true,
+      dateNF: 'MM/DD/YYYY THH:mm:ss'
+    })
+
+    const raw = utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]])
+    dataState.data = transformData(raw)
+  } catch (error) {
+    console.error('Error loading data from Google Drive:', error)
+    dataState.error = error.message
+  } finally {
+    dataState.isLoading = false
+  }
+}
+
+export default dataState.data
