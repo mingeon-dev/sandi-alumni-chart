@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import { getDataByFilter } from '@/util/DataHelper'
+import { getDataByFilter, dataState } from '@/util/DataHelper'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,6 +13,7 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
       beforeEnter: (to) => {
+        if (dataState.isLoading || dataState.data.length === 0) return
         const { title, value } = to.query
         const data = getDataByFilter(title, value)
         if (data.length === 1) {
@@ -25,6 +26,7 @@ const router = createRouter({
       name: 'list',
       component: () => import('../views/ListView.vue'),
       beforeEnter: (to) => {
+        if (dataState.isLoading || dataState.data.length === 0) return
         const { title, value, title2, value2 } = to.query
         const data = getDataByFilter(title2, value2, getDataByFilter(title, value))
         if (data.length === 1) {

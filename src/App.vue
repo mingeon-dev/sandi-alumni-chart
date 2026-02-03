@@ -1,9 +1,13 @@
 <script setup>
-import { computed, watch, ref } from 'vue'
+import { computed, watch, ref, onMounted } from 'vue'
 import { mdiAccountPlus, mdiOpenInNew } from '@mdi/js'
 import { RouterView } from 'vue-router'
 import { useRoute } from 'vue-router'
-import { getTitle } from './util/DataHelper'
+import { getTitle, loadData, dataState } from './util/DataHelper'
+
+onMounted(() => {
+  loadData()
+})
 
 const route = useRoute()
 
@@ -62,7 +66,15 @@ const openUrl = (url) => window.open(url)
     <p v-if="showInfo" class="header-info">업데이트: 2024년 9월 12일</p>
   </div>
   <div class="wrapper">
-    <RouterView />
+    <div v-if="dataState.isLoading" class="loading">
+      <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+      <p class="loading-text">데이터를 불러오는 중...</p>
+    </div>
+    <div v-else-if="dataState.error" class="error">
+      <p>데이터를 불러오는데 실패했습니다.</p>
+      <p class="error-detail">{{ dataState.error }}</p>
+    </div>
+    <RouterView v-else />
   </div>
   <v-footer class="bg-primary">
     <v-row justify="center" no-gutters>
@@ -102,6 +114,34 @@ const openUrl = (url) => window.open(url)
 
 .wrapper {
   min-height: calc(100vh - 141.5px);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 200px);
+}
+
+.loading-text {
+  margin-top: 1rem;
+  color: #666;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 200px);
+  color: #d32f2f;
+}
+
+.error-detail {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #666;
 }
 
 @media only screen and (max-width: 600px) {

@@ -1,4 +1,6 @@
-import data from './ExcelParser'
+import { dataState, loadData } from './ExcelParser'
+
+export { loadData, dataState }
 
 export const FIELD_NAME = {
   ID: 'id',
@@ -56,7 +58,7 @@ export const getDetailByFieldNames = (item, fieldNames) =>
   }))
 
 export const getDataByFilter = (path, value, _data) => {
-  const d = _data || data
+  const d = _data || dataState.data
   if (!path) return d
   const keyArray = path.split('.')
   return keyArray.length === 2
@@ -65,7 +67,7 @@ export const getDataByFilter = (path, value, _data) => {
 }
 
 export const calcStatistics = (path, _data) => {
-  const d = _data || data
+  const d = _data || dataState.data
   const keyArray = path.split('.')
   const filteredData =
     keyArray.length === 2 ? d.map((item) => item[keyArray[0]]).filter((item) => item) : d
@@ -82,7 +84,7 @@ export const calcStatistics = (path, _data) => {
   }, {})
 }
 
-export const getTotalDataLength = () => data.length
+export const getTotalDataLength = () => dataState.data.length
 
 export const getTitleForMobile = (title) =>
   title.replace('관련 ', '관련\n').replace('공학 ', '공학\n')
