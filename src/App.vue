@@ -63,7 +63,9 @@ const openUrl = (url) => window.open(url)
       :class="{ 'without-info': !showInfo }"
       :items="routes"
     ></v-breadcrumbs>
-    <p v-if="showInfo" class="header-info">업데이트: 2024년 9월 12일</p>
+    <p v-if="showInfo && dataState.lastUpdated" class="header-info">
+      업데이트: {{ dataState.lastUpdated }}
+    </p>
   </div>
   <div class="wrapper">
     <div v-if="dataState.isLoading" class="loading">
