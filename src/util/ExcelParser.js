@@ -7,7 +7,8 @@ const DOWNLOAD_URL = `https://docs.google.com/spreadsheets/d/${GOOGLE_DRIVE_FILE
 export const dataState = reactive({
   data: [],
   isLoading: true,
-  error: null
+  error: null,
+  lastUpdated: null
 })
 
 const toIdString = (timestamp) => {
@@ -23,6 +24,13 @@ const toIdString = (timestamp) => {
 }
 
 const toSubjectArray = (subjectString) => subjectString?.split(', ') ?? []
+
+const formatDateKorean = (date) => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${year}년 ${month}월 ${day}일`
+}
 
 const transformData = (raw) =>
   raw
@@ -106,6 +114,9 @@ export const loadData = async () => {
 
     const raw = utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]])
     dataState.data = transformData(raw)
+
+    const latestTimestamp = Math.max(...raw.map((item) => new Date(item['타임스탬프']).getTime()))
+    dataState.lastUpdated = formatDateKorean(new Date(latestTimestamp))
   } catch (error) {
     console.error('Error loading data from Google Drive:', error)
     dataState.error = error.message
