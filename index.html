@@ -16,6 +16,29 @@
     <title>돌쇠 졸업생 현황</title>
 
     <script type="text/javascript">
+      // Access control: only allow entry from permitted referrer URLs
+      ;(function () {
+        var allowed = [
+          'https://linktr.ee/khusandi',
+          'https://cafe.naver.com/sandip',
+          'https://github.com/mingeon-dev'
+        ]
+        var ref = document.referrer
+        var granted = sessionStorage.getItem('sandi_access') === '1'
+        if (!granted) {
+          granted = allowed.some(function (url) {
+            return ref.startsWith(url)
+          })
+        }
+        if (granted) {
+          sessionStorage.setItem('sandi_access', '1')
+          window.__ACCESS_GRANTED = true
+        } else {
+          window.__ACCESS_GRANTED = false
+        }
+      })()
+    </script>
+    <script type="text/javascript">
       // Single Page Apps for GitHub Pages
       // MIT License
       // https://github.com/rafgraph/spa-github-pages
